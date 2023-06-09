@@ -11,13 +11,13 @@ const Navbar = () => {
             <Link to="cabs">Cabs</Link>
           </li>
           <li>
-            <Link to="/new-reservation">Reserve</Link>
+            <Link to="/reservation-new">Reserve</Link>
           </li>
           <li>
             <Link to="/reservations">My Reservations</Link>
           </li>
           <li>
-            <Link to="/new-cab">Add Cab</Link>
+            <Link to="/cabs-new">Add Cab</Link>
           </li>
           <li>
             <Link to="/delete-cab">Delete Cab</Link>
