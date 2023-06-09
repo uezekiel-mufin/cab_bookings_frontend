@@ -27,7 +27,7 @@ const router = createBrowserRouter([
         element: <CabShow />,
       },
       {
-        path: 'reservation',
+        path: 'reservations',
         element: <Reservations />,
       },
       {
