@@ -1,17 +1,52 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './index.css';
+import { Provider } from 'react-redux';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
+import ErrorPage from './components/ErrorPage';
+import CabIndex from './components/CabIndex';
+import Reservations from './components/Reservations';
+import AddCab from './components/AddCab';
+import NewReservation from './NewReservation';
+import store from './redux/store/store';
+import CabShow from './components/CabShow';
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <App />,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        path: 'cabs',
+        element: <CabIndex />,
+      },
+      {
+        path: 'cabs/:id',
+        element: <CabShow />,
+      },
+      {
+        path: 'reservation',
+        element: <Reservations />,
+      },
+      {
+        path: 'new-cab',
+        element: <AddCab />,
+      },
+      {
+        path: 'new-reservation',
+        element: <NewReservation />,
+      },
+    ],
+  },
+]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
-  </React.StrictMode>
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
+  </React.StrictMode>,
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
