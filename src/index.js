@@ -11,6 +11,7 @@ import AddCab from './components/AddCab';
 import NewReservation from './NewReservation';
 import store from './redux/store/store';
 import CabShow from './components/CabShow';
+import DeleteCab from './components/DeleteCab';
 
 const router = createBrowserRouter([
   {
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
       {
         path: 'reservation-new',
         element: <NewReservation />,
+      },
+      {
+        path: 'delete-cab',
+        element: <DeleteCab />,
       },
     ],
   },
