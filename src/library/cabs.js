@@ -3,7 +3,7 @@ const cabsData = [
     id: 1,
     manufacturer: 'Honda',
     model: 'Honda City',
-    Transmission: 'Automatic',
+    transmission: 'Automatic',
     rentalPrice: 100,
     imageUrl:
       'https://images.unsplash.com/photo-1600259828526-77f8617ceec9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8aG9uZGElMjBjaXR5fGVufDB8fDB8fHww&auto=format&fit=crop&w=400&q=60',
@@ -16,7 +16,7 @@ const cabsData = [
     id: 2,
     manufacturer: 'Ford',
     model: 'Ford Mustang',
-    Transmission: 'Automatic',
+    transmission: 'Automatic',
     rentalPrice: 100,
     imageUrl:
       'https://images.unsplash.com/photo-1603553329474-99f95f35394f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Rm9yZCUyME11c3Rhbmd8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=400&q=60',
@@ -29,7 +29,7 @@ const cabsData = [
     id: 3,
     manufacturer: 'BMW',
     model: 'BMW 3 Series',
-    Transmission: 'Automatic',
+    transmission: 'Automatic',
     rentalPrice: 100,
     imageUrl:
       'https://images.unsplash.com/photo-1613027570801-5d2fe8f5e15d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Qk1XJTIwMyUyMFNlcmllc3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=400&q=60',
@@ -42,7 +42,7 @@ const cabsData = [
     id: 4,
     manufacturer: 'Toyota',
     model: 'Toyota Highlander',
-    Transmission: 'Automatic',
+    transmission: 'Automatic',
     rentalPrice: 100,
     imageUrl:
       'https://images.unsplash.com/photo-1610855143470-0967a7348972?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8VG95b3RhJTIwSGlnaGxhbmRlcnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=400&q=60',
@@ -55,7 +55,7 @@ const cabsData = [
     id: 5,
     manufacturer: 'Chevrolet',
     model: 'Chevrolet Tahoe',
-    Transmission: 'Automatic',
+    transmission: 'Automatic',
     rentalPrice: 100,
     imageUrl:
       'https://images.unsplash.com/photo-1564422426545-8a43cd6598ff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Q2hldnJvbGV0JTIwVGFob2V8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=400&q=60',
@@ -68,7 +68,7 @@ const cabsData = [
     id: 6,
     manufacturer: 'Nissan',
     model: 'Nissan Altima',
-    Transmission: 'Automatic',
+    transmission: 'Automatic',
     rentalPrice: 100,
     imageUrl:
       'https://images.unsplash.com/photo-1581540222194-0def2dda95b8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Tmlzc2FuJTIwQWx0aW1hfGVufDB8fDB8fHww&auto=format&fit=crop&w=400&q=60',
@@ -81,7 +81,7 @@ const cabsData = [
     id: 7,
     manufacturer: 'Mercedes-Benz',
     model: 'Mercedes-Benz C-Class',
-    Transmission: 'Automatic',
+    transmission: 'Automatic',
     rentalPrice: 100,
     imageUrl:
       'https://images.unsplash.com/photo-1681170368080-f240d1216904?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fE1lcmNlZGVzJTIwQmVueiUyMEMlMjBDbGFzc3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=400&q=60',

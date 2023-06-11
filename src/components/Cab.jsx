@@ -12,7 +12,7 @@ const Cab = ({ cab }) => (
       <img
         src={cab.imageUrl}
         alt={cab.model}
-        className="rounded-full aspect-square w-60  "
+        className="rounded-full aspect-square w-60 "
       />
       <h2 className="font-extrabold text-[#645858] text-xl tracking-wider">
         {cab.model}

@@ -14,7 +14,7 @@ const Navbar = () => {
     {
       id: 2,
       name: 'Reserve',
-      path: '/reservation-new',
+      path: '/reservations/new',
     },
     {
       id: 3,
@@ -24,7 +24,7 @@ const Navbar = () => {
     {
       id: 4,
       name: 'Add Cab',
-      path: '/cabs-new',
+      path: '/cabs/new',
     },
     {
       id: 5,
