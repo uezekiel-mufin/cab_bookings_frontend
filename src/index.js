@@ -4,14 +4,14 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './index.css';
 import { Provider } from 'react-redux';
 import App from './App';
-import ErrorPage from './components/ErrorPage';
-import CabIndex from './components/CabIndex';
-import Reservations from './components/Reservations';
-import AddCab from './components/AddCab';
+import ErrorPage from './pages/ErrorPage';
+import CabIndex from './pages/CabIndex';
+import Reservations from './pages/Reservations';
+import AddCab from './pages/AddCab';
 import NewReservation from './NewReservation';
 import store from './redux/store/store';
-import CabShow from './components/CabShow';
-import DeleteCab from './components/DeleteCab';
+import CabShow from './pages/CabShow';
+import DeleteCab from './pages/DeleteCab';
 
 const router = createBrowserRouter([
   {
