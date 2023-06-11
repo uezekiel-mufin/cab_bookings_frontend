@@ -4,9 +4,15 @@ import cabsData from '../../library/cabs';
 
 const initialState = {
   cabs: [],
+  displayedCabs: [],
   selectedCab: {},
   loading: false,
   error: '',
+  pageCounter: 0,
+  numOfPages: 0,
+  currentPage: 1,
+  startCount: 0,
+  endCount: 3,
 };
 
 export const fetchCabs = createAsyncThunk('fetchCabs', async () => {
@@ -26,14 +32,39 @@ export const fetchCab = createAsyncThunk('fetchCab', async () => {
 const fetchCabSlice = createSlice({
   name: 'fetchCabs',
   initialState,
-  reducers: {},
+  reducers: {
+    nextCab: (state) => {
+      if (state.currentPage < state.numOfPages - 2) {
+        state.currentPage += 1;
+        state.startCount += 1;
+        state.endCount += 1;
+        state.displayedCabs = state.cabs.slice(
+          state.startCount,
+          state.endCount,
+        );
+      }
+    },
+    prevCab: (state) => {
+      if (state.currentPage > 1) {
+        state.currentPage -= 1;
+        state.startCount -= 1;
+        state.endCount -= 1;
+        state.displayedCabs = state.cabs.slice(
+          state.startCount,
+          state.endCount,
+        );
+      }
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(fetchCabs.pending, (state) => {
       state.loading = true;
     });
     builder.addCase(fetchCabs.fulfilled, (state, action) => {
       state.cabs = action.payload;
+      state.displayedCabs = action.payload.slice(0, 3);
       state.loading = false;
+      state.numOfPages = action.payload.length;
     });
     builder.addCase(fetchCabs.rejected, (state, action) => {
       state.error = action.error.message;
@@ -54,3 +85,4 @@ const fetchCabSlice = createSlice({
 });
 
 export default fetchCabSlice.reducer;
+export const { nextCab, prevCab } = fetchCabSlice.actions;

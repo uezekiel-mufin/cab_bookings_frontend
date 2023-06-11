@@ -1,68 +1,58 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { BiLeftArrow, BiRightArrow } from 'react-icons/bi';
-import { FaMediumM, FaTwitter, FaInstagram } from 'react-icons/fa';
-import { fetchCabs } from '../redux/slices/fetchCabSlice';
+import { fetchCabs, nextCab, prevCab } from '../redux/slices/fetchCabSlice';
+import Cab from '../components/Cab';
 
 const CabIndex = () => {
   const [cabsLists, setCabsLists] = useState([]);
   const dispatch = useDispatch();
-  const cabs = useSelector((state) => state.fetchCab.cabs);
-
+  const cabs = useSelector((state) => state.fetchCab.displayedCabs);
+  const currentPage = useSelector((state) => state.fetchCab.currentPage);
+  const numOfPages = useSelector((state) => state.fetchCab.numOfPages);
   useEffect(() => {
     dispatch(fetchCabs());
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     setCabsLists(cabs);
   }, [cabs]);
 
   return (
-    <main className="py-10 space-y-12 transition-all duration-300 ease-linear">
-      <header className="flex flex-col items-center">
-        <h1 className="font-extrabold text-[#645858] text-5xl">Cabs Models</h1>
-        <p className="text-base">Please select a cab for rentals</p>
+    <main className="py-8 transition-all duration-300 ease-linear">
+      <header className="flex flex-col gap-4 items-center">
+        <h1 className="font-extrabold text-[#645858] text-5xl capitalize">
+          Secure your ride
+        </h1>
+        <p className="text-base font-semibold italic text-[#8f8787]">
+          Please select a cab for rentals
+        </p>
+        <hr className="border-dotted w-[300px] mt-4 font-bold text-2xl border-[3px]" />
       </header>
       <section className="">
-        <ul className="flex relative gap-8 overflow-auto items-center justify-center p-12 px-32">
+        <ul className="flex relative gap-8 overflow-auto items-center transition-all duration-300 ease-linear justify-center p-12 px-32">
           <button
-            className="absolute top-1/2 left-0 transform -translate-y-1/2 bg-slate-300 p-8 pl-16 rounded-r-full"
+            className={`absolute top-1/2 left-0 transform -translate-y-1/2 ${
+              currentPage > 1 ? 'bg-lime-400' : 'bg-slate-200'
+            } p-8 pl-16 rounded-r-full`}
             type="button"
+            onClick={() => dispatch(prevCab())}
+            disabled={currentPage === 1}
           >
             <BiLeftArrow className="text-white text-xl" />
           </button>
           <button
-            className="absolute top-1/2 right-0 transform -translate-y-1/2 bg-slate-400 p-8 pr-16 rounded-l-full"
+            className={`absolute top-1/2 right-0 transform -translate-y-1/2 ${
+              currentPage === numOfPages - 2 ? 'bg-slate-200' : 'bg-lime-400'
+            } p-8 pr-16 rounded-l-full`}
             type="button"
+            onClick={() => dispatch(nextCab())}
+            disabled={currentPage === numOfPages - 2}
           >
             <BiRightArrow className="text-white text-xl" />
           </button>
-          {cabsLists.slice(0, 3).map((cab) => (
-            <li key={cab.id} className="flex flex-col gap-6 items-center">
-              <img
-                src={cab.imageUrl}
-                alt={cab.model}
-                className="rounded-full aspect-square w-60  "
-              />
-              <h2 className="font-extrabold text-[#645858] text-xl tracking-wider">
-                {cab.model}
-              </h2>
-              <hr className="border-dotted w-1/2 font-bold text-2xl border-4" />
-              <p className="text-[#807e80]">
-                {`${cab.description.substring(0, 200)}...`}
-              </p>
-              <div className="flex gap-4">
-                <span className="rounded-full border p-2">
-                  <FaTwitter className="text-xl  text-[#a7a4a7]  cursor-pointer  " />
-                </span>
-                <span className="rounded-full border p-2">
-                  <FaInstagram className="text-xl text-[#a7a4a7] cursor-pointer  " />
-                </span>
-                <span className="rounded-full border p-2">
-                  <FaMediumM className="text-xl  text-[#a7a4a7]  cursor-pointer  " />
-                </span>
-              </div>
-            </li>
+          {cabsLists.map((cab) => (
+            <Cab cab={cab} key={cab.index} />
           ))}
         </ul>
       </section>

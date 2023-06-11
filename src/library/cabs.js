@@ -1,5 +1,6 @@
 const cabsData = [
   {
+    id: 1,
     manufacturer: 'Honda',
     model: 'Honda City',
     Transmission: 'Automatic',
@@ -12,6 +13,7 @@ const cabsData = [
       'The Honda City is a stylish and fuel-efficient sedan perfect for your daily commutes or longer trips. It features a sleek silver exterior that turns heads wherever you go. The interior offers comfortable seating for up to five passengers, with ample legroom and headspace. The trunk provides generous storage space, accommodating multiple suitcases or bags.',
   },
   {
+    id: 2,
     manufacturer: 'Ford',
     model: 'Ford Mustang',
     Transmission: 'Automatic',
@@ -24,6 +26,7 @@ const cabsData = [
       "The Ford Mustang is an iconic sports car known for its powerful performance and striking design. This automatic transmission coupe offers an exhilarating driving experience combined with modern comfort features. With a seating capacity of four, it's an ideal choice for those seeking a blend of style and performance.",
   },
   {
+    id: 3,
     manufacturer: 'BMW',
     model: 'BMW 3 Series',
     Transmission: 'Automatic',
@@ -36,6 +39,7 @@ const cabsData = [
       'The BMW 3 Series is a luxury sedan that combines elegance, performance, and cutting-edge technology. With its automatic transmission, you can experience a smooth and dynamic driving experience. The spacious interior provides comfortable seating for up to five passengers, making it suitable for both business and leisure travel.',
   },
   {
+    id: 4,
     manufacturer: 'Toyota',
     model: 'Toyota Highlander',
     Transmission: 'Automatic',
@@ -48,6 +52,7 @@ const cabsData = [
       "The Toyota Highlander is a versatile SUV that offers ample space for both passengers and cargo. With its automatic transmission, you can enjoy a comfortable and convenient driving experience. The Highlander's seating capacity of seven makes it an excellent choice for family trips or group outings.",
   },
   {
+    id: 5,
     manufacturer: 'Chevrolet',
     model: 'Chevrolet Tahoe',
     Transmission: 'Automatic',
@@ -60,6 +65,7 @@ const cabsData = [
       "The Chevrolet Tahoe is a spacious and powerful SUV that combines style, comfort, and capability. With its automatic transmission, you can effortlessly navigate various terrains. The Tahoe's seating capacity of eight ensures there's room for everyone, making it ideal for larger families or groups.",
   },
   {
+    id: 6,
     manufacturer: 'Nissan',
     model: 'Nissan Altima',
     Transmission: 'Automatic',
@@ -72,6 +78,7 @@ const cabsData = [
       'The Nissan Altima is a reliable and fuel-efficient sedan that offers a comfortable and smooth ride. With its automatic transmission, driving becomes effortless. The Altima provides seating for up to five passengers, making it a practical choice for both daily commutes and longer trips.',
   },
   {
+    id: 7,
     manufacturer: 'Mercedes-Benz',
     model: 'Mercedes-Benz C-Class',
     Transmission: 'Automatic',
