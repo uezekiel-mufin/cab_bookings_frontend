@@ -30,7 +30,7 @@ const CabIndex = () => {
         <hr className="border-dotted w-[300px] mt-4 font-bold text-2xl border-[3px]" />
       </header>
       <section className="">
-        <ul className="flex relative gap-8 overflow-auto items-center transition-all duration-300 ease-linear justify-center p-12 px-32">
+        <ul className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 relative gap-8 overflow-auto items-center transition-all duration-300 ease-linear justify-center p-12 px-32">
           <button
             className={`absolute top-1/2 left-0 transform -translate-y-1/2 ${
               currentPage > 1 ? 'bg-lime-400' : 'bg-slate-200'
@@ -52,7 +52,7 @@ const CabIndex = () => {
             <BiRightArrow className="text-white text-xl" />
           </button>
           {cabsLists.map((cab) => (
-            <Cab cab={cab} key={cab.index} />
+            <Cab cab={cab} key={cab.id} />
           ))}
         </ul>
       </section>

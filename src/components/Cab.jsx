@@ -20,7 +20,7 @@ const Cab = ({ cab }) => (
     </Link>
     <hr className="border-dotted w-1/2 font-bold text-2xl border-[3px]" />
     <p className="text-[#807e80]">
-      {`${cab.description.substring(0, 200)}...`}
+      {`${cab.description.substring(0, 150)}...`}
     </p>
     <div className="flex gap-4">
       <span className="rounded-full border p-2">

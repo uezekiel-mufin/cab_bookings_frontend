@@ -45,16 +45,17 @@ const Navbar = () => {
         <nav>
           <ul className="flex flex-col  text-lg font-bold text-[#6d6b6b]">
             {navLinks.map((link) => (
-              <li
-                onClick={() => handleLinkClick(link.id)}
-                key={link.id}
-                className={`${
-                  activeLink === link.id && 'bg-lime-600 text-white'
-                } px-4 py-2 transition-all duration-300 cursor-pointer ease-linear`}
-                role="presentation"
-              >
-                <Link to={link.path}>{link.name}</Link>
-              </li>
+              <Link to={link.path} key={link.id}>
+                <li
+                  onClick={() => handleLinkClick(link.id)}
+                  className={`${
+                    activeLink === link.id && 'bg-lime-600 text-white'
+                  } px-4 py-2 transition-all duration-300 cursor-pointer ease-linear`}
+                  role="presentation"
+                >
+                  {link.name}
+                </li>
+              </Link>
             ))}
           </ul>
         </nav>

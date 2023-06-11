@@ -22,10 +22,10 @@ export const fetchCabs = createAsyncThunk('fetchCabs', async () => {
   return response;
 });
 
-export const fetchCab = createAsyncThunk('fetchCab', async () => {
+export const fetchCab = createAsyncThunk('fetchCab', async (id) => {
   // const response = await axios.get('http://localhost:3001/cabs');
   // return response.data;
-  const response = cabsData[0];
+  const response = await cabsData.find((cab) => cab.id === +id);
   return response;
 });
 
