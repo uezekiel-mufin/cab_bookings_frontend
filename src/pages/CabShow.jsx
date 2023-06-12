@@ -21,7 +21,6 @@ const CabShow = () => {
   }, [dispatch, id]);
 
   if (loading) return <div>Loading...</div>;
-  console.log(selectedCab);
   return (
     <main className="p-10 px-16  relative h-full text-[#645858] ">
       <button
@@ -43,7 +42,9 @@ const CabShow = () => {
         <section className="flex flex-col gap-8 items-end px-6">
           <header className="flex flex-col items-end">
             <h1 className="font-bold text-3xl">{selectedCab.model}</h1>
-            <p>{selectedCab.transmission}</p>
+            <p className="font-semibold tracking-wide text-lg">
+              {selectedCab.engine_type}
+            </p>
           </header>
           <section className="flex w-full flex-col  items-end space-y-2">
             <span className="flex font-semibold rounded-sm text-lg w-[60%] justify-between px-4 tracking-wider py-2 bg-gray-200">
