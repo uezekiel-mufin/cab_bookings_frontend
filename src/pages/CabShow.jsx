@@ -3,10 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { BiLeftArrow } from 'react-icons/bi';
 import { BsCarFront } from 'react-icons/bs';
-import {
-  MdOutlineFavoriteBorder,
-  MdOutlineKeyboardArrowRight,
-} from 'react-icons/md';
+import { MdOutlineKeyboardArrowRight } from 'react-icons/md';
 import MultiColorProgressBar from '../components/CircularBar';
 import { fetchCab } from '../redux/slices/fetchCabSlice';
 
@@ -90,11 +87,13 @@ const CabShow = () => {
             <Link to="/reservations/new">
               <button
                 type="button"
-                className="bg-lime-500 flex gap-1 items-center text-white rounded-3xl text-xl px-8 py-3"
+                className="bg-lime-500 flex gap-2 items-center text-white rounded-3xl text-xl px-8 py-3"
               >
                 <BsCarFront />
                 Reserve Cab
-                <MdOutlineFavoriteBorder />
+                <span className="border rounded-full">
+                  <MdOutlineKeyboardArrowRight className="text-sm animate-pulse" />
+                </span>
               </button>
             </Link>
           </section>

@@ -3,7 +3,7 @@ import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
 const MultiColorProgressBar = () => {
-  const progress = 70; // The progress value (percentage)
+  const progress = 100; // The progress value (percentage)
 
   // Define an array of colors for each segment
   const colors = ['#FF0000', '#00FF00', '#0000FF', '#212121'];
