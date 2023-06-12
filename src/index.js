@@ -8,7 +8,7 @@ import ErrorPage from './pages/ErrorPage';
 import CabIndex from './pages/CabIndex';
 import Reservations from './pages/Reservations';
 import AddCab from './pages/AddCab';
-import NewReservation from './NewReservation';
+import NewReservation from './pages/NewReservation';
 import store from './redux/store/store';
 import CabShow from './pages/CabShow';
 import DeleteCab from './pages/DeleteCab';

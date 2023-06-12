@@ -6,3 +6,24 @@ body {
   margin: 0;
   padding: 0;
 }
+
+input {
+  border: 1px solid limegreen;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+}
+
+input:focus {
+  outline: none;
+  border-color: limegreen;
+}
+
+label {
+  display: block;
+  margin-bottom: 20px;
+  font-weight: 600;
+  font-size: 1.2rem;
+}
