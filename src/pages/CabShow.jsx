@@ -23,7 +23,7 @@ const CabShow = () => {
   if (loading) return <div>Loading...</div>;
   console.log(selectedCab);
   return (
-    <main className="p-10  relative h-full">
+    <main className="p-10 px-16  relative h-full text-[#645858] ">
       <button
         className="absolute bottom-12 left-0 transform
           p-5 pl-16 rounded-r-full bg-lime-400"
@@ -33,16 +33,16 @@ const CabShow = () => {
         <BiLeftArrow className="text-white text-xl" />
       </button>
       <section className="grid pl-10 grid-cols-2">
-        <section className="flex justify-end  pt-24">
+        <section className="flex justify-end  pt-20">
           <img
             src={selectedCab.imageUrl}
             alt={selectedCab.model}
-            className="aspect-square w-[80%] rounded-lg"
+            className="aspect-square  rounded-lg"
           />
         </section>
         <section className="flex flex-col gap-8 items-end px-6">
           <header className="flex flex-col items-end">
-            <h1 className="font-bold text-2xl">{selectedCab.model}</h1>
+            <h1 className="font-bold text-3xl">{selectedCab.model}</h1>
             <p>{selectedCab.transmission}</p>
           </header>
           <section className="flex w-full flex-col  items-end space-y-2">
@@ -79,10 +79,9 @@ const CabShow = () => {
           <section className="flex flex-col items-end gap-8">
             <Link to="/cabs" className="flex items-center">
               <p className="font-semibold tracking-widest">
-                {' '}
                 Checkout other Models
               </p>
-              <MdOutlineKeyboardArrowRight className="text-2xl animate-pulse" />
+              <MdOutlineKeyboardArrowRight className="text-3xl animate-pulse text-orange-500" />
             </Link>
             <MultiColorProgressBar />
           </section>
@@ -90,7 +89,7 @@ const CabShow = () => {
             <Link to="/reservations/new">
               <button
                 type="button"
-                className="bg-lime-300 flex gap-1 items-center text-white rounded-3xl text-xl px-8 py-3"
+                className="bg-lime-500 flex gap-1 items-center text-white rounded-3xl text-xl px-8 py-3"
               >
                 <BsCarFront />
                 Reserve Cab
