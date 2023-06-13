@@ -19,7 +19,7 @@ const CabShow = () => {
 
   if (loading) return <div>Loading...</div>;
   return (
-    <main className="p-10 px-16  relative h-full text-[#645858] ">
+    <main className="p-10 px-16  relative h-screen text-[#645858] ">
       <button
         className="absolute bottom-12 left-0 transform
           p-5 pl-16 rounded-r-full bg-lime-400"

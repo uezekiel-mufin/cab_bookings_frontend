@@ -1,10 +1,12 @@
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable object-curly-newline */
-// import React, { useRef, useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import ImageUploader from '../components/ImageUploader';
 // import { useDispatch } from 'react-redux';
 
 const AddCab = () => {
+  const [imageUrl, setImageUrl] = useState('');
   const {
     register,
     handleSubmit,
@@ -18,26 +20,9 @@ const AddCab = () => {
   //   cloudinaryRef.current = window.cloudinary;
   // }, []);
 
-  // const uploadToCloudinary = async () => {
-  //   const widget = cloudinaryRef.current.createUploadWidget(
-  //     {
-  //       cloudName: 'dk8oefaio',
-  //       uploadPreset: 'firstmonie',
-  //       resourceType: 'image',
-  //     },
-  //     (error, result) => {
-  //       if (!error && result && result.event === 'success') {
-  //         setImageUrl(result.info.url);
-  //       } else if (error) {
-  //         console.log(error);
-  //       }
-  //     },
-  //   );
-  //   widget.open();
-  // };
-
   const handleFormSubmit = (data) => {
     console.log(data);
+    console.log(imageUrl);
     // const obj = { name, date, cab, city };
     // dispatch(createReservation(obj));
     reset();
@@ -208,20 +193,9 @@ const AddCab = () => {
           </label>
           {errors.description && <span>{errors.description.message}</span>}
         </div>
-        <div className="md:col-span-2 my-2">
-          <label htmlFor="image">
-            Image
-            <input
-              type="file"
-              name="image"
-              id="image"
-              {...register('image_url', {
-                required: true,
-                message: 'Please select an image for this cab',
-              })}
-              className="border-none p-0"
-            />
-          </label>
+        <div className="md:col-span-2">
+          <h5 className="block font-semibold text-base">Image</h5>
+          <ImageUploader setImageUrl={setImageUrl} />
           {errors.image_url && <span>{errors.image_url.message}</span>}
         </div>
 

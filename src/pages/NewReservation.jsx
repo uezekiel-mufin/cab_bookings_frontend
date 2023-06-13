@@ -33,7 +33,7 @@ const NewReservation = () => {
     reset();
   };
   return (
-    <main className="flex w-full h-full text-[#645858] bg-lime-200 justify-center pt-20">
+    <main className="flex w-full h-screen text-[#645858] bg-lime-200 justify-center pt-20">
       <section>
         <h1 className="flex justify-center font-weight text-4xl mb-8 font-bold">
           Reserve a New Cab

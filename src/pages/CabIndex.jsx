@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { BiLeftArrow, BiRightArrow } from 'react-icons/bi';
+import { motion } from 'framer-motion';
 import { fetchCabs, nextCab, prevCab } from '../redux/slices/fetchCabSlice';
 import Cab from '../components/Cab';
 
@@ -52,7 +53,9 @@ const CabIndex = () => {
             <BiRightArrow className="text-white text-xl" />
           </button>
           {cabsLists.map((cab) => (
-            <Cab cab={cab} key={cab.id} />
+            <motion.div key={cab.id}>
+              <Cab cab={cab} />
+            </motion.div>
           ))}
         </ul>
       </section>
