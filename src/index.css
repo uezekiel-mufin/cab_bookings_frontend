@@ -8,7 +8,8 @@ body {
 }
 
 input,
-select {
+select,
+textarea {
   border: 1px solid limegreen;
   border-radius: 4px;
   padding: 0.5rem 1rem;
@@ -19,7 +20,8 @@ select {
 }
 
 input:focus,
-select:focus {
+select:focus,
+textarea:focus {
   outline: none;
   border-color: limegreen;
 }

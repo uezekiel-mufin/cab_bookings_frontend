@@ -6,12 +6,12 @@ import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
-    <div className="grid grid-cols-11  divide-x-2 divide-gray-200">
-      <section className="col-span-2">
+    <div className="grid grid-cols-1 md:grid-cols-7 lg:grid-cols-11  divide-x-2 divide-gray-200">
+      <section className="hidden md:flex md:col-span-1 lg:col-span-2">
         <ToastContainer position="top-center" />
         <Navbar />
       </section>
-      <section className="col-span-9">
+      <section className=" md:col-span-5 6 lg:col-span-9">
         <Outlet />
       </section>
     </div>
