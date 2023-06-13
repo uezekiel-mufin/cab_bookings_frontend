@@ -2,12 +2,14 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
+import { useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchUser } from '../redux/slices/userSlice';
 import { createReservation } from '../redux/slices/reservationSlice';
 
 const NewReservation = () => {
   const dispatch = useDispatch();
+  const { state } = useLocation();
   const { user } = useSelector((state) => state.user);
   const { message } = useSelector((state) => state.reservation);
   const { cabs } = useSelector((state) => state.fetchCab);
@@ -17,6 +19,7 @@ const NewReservation = () => {
   }, [dispatch]);
 
   console.log(message);
+  console.log(state);
 
   const {
     register,
@@ -73,10 +76,13 @@ const NewReservation = () => {
                 name="cab"
                 id="cab"
                 {...register('cab', {
-                  required: true,
-                  message: 'Please chose a cab',
+                  required: 'Please choose a cab',
                 })}
+                value={state?.model || ''}
               >
+                <option value="" disabled>
+                  Select a cab
+                </option>
                 {cabs.map((cab) => (
                   <option key={cab.id} value={cab.model}>
                     {cab.model}
