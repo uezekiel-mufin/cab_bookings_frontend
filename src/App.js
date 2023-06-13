@@ -6,8 +6,8 @@ import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-7 lg:grid-cols-11  divide-x-2 divide-gray-200">
-      <section className="hidden md:flex md:col-span-1 lg:col-span-2">
+    <div className="grid grid-cols-1 md:grid-cols-7 lg:grid-cols-11 overflow-auto divide-x-2 divide-gray-200">
+      <section className="hidden w-full md:flex md:col-span-2 max-h-screen lg:col-span-2">
         <ToastContainer position="top-center" />
         <Navbar />
       </section>

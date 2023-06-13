@@ -39,7 +39,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="hidden h-screen md:flex flex-col justify-between py-6">
+    <div className="hidden max-h-screen  md:flex flex-col w-full justify-between py-6">
       <section className="flex justify-between gap-24 pl-6 flex-col">
         <h1 className="text-indigo-500 text-3xl  font-extrabold">CarBooky</h1>
         <nav>
