@@ -1,14 +1,17 @@
 import './App.css';
 import { Outlet } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 import Navbar from './components/Navbar';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
-    <div className="grid grid-cols-7  divide-x-2 divide-gray-200">
-      <section className="col-span-1">
+    <div className="grid grid-cols-11  divide-x-2 divide-gray-200">
+      <section className="col-span-2">
+        <ToastContainer position="top-center" />
         <Navbar />
       </section>
-      <section className="col-span-6">
+      <section className="col-span-9">
         <Outlet />
       </section>
     </div>

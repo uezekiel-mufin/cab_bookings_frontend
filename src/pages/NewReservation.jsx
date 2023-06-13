@@ -19,19 +19,19 @@ const NewReservation = () => {
   }, [dispatch]);
 
   console.log(message);
-  console.log(state);
 
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm();
   const handleFormSubmit = ({ name, date, cab, city }) => {
     console.log(name, date, cab, city);
     const obj = { name, date, cab, city };
     dispatch(createReservation(obj));
+    reset();
   };
-  console.log(cabs);
   return (
     <main className="flex w-full h-full text-[#645858] bg-lime-200 justify-center pt-20">
       <section>

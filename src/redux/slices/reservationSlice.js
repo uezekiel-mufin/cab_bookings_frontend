@@ -1,4 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { toast } from 'react-toastify';
+
 // import axios from 'axios';
 
 const initialState = {
@@ -31,6 +33,7 @@ const reservationSlice = createSlice({
     builders.addCase(createReservation.fulfilled, (state, action) => {
       state.loading = false;
       state.message = action.payload;
+      toast.success('Your reservation has been created');
     });
     builders.addCase(createReservation.rejected, (state) => {
       state.loading = false;
