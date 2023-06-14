@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 // import axios from 'axios';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const initialState = {
   cabs: [],
@@ -15,16 +16,33 @@ const initialState = {
   endCount: 3,
 };
 
+// Function to fetch all cabs
 export const fetchCabs = createAsyncThunk('fetchCabs', async () => {
   const { data } = await axios.get('http://127.0.0.1:3000/api/v1/cabs');
-  console.log(data);
   return data;
 });
 
+// Function to fetch a single cab
 export const fetchCab = createAsyncThunk('fetchCab', async (id) => {
   const { data } = await axios.get(`http://127.0.0.1:3000/api/v1/cabs/${id}`);
-  console.log(data);
   return data;
+});
+
+// Function to create a cab
+export const createCab = createAsyncThunk('createCab', async (cab) => {
+  try {
+    const response = await axios.post('http://127.0.0.1:3000/api/v1/cabs', {
+      cab,
+    });
+    const { data } = response;
+    if (response.status === 201) {
+      toast.success('Cab created successfully');
+      return data;
+    }
+  } catch (error) {
+    toast.error('There was an error creating the cab');
+  }
+  return null;
 });
 
 const fetchCabSlice = createSlice({

@@ -2,31 +2,32 @@
 /* eslint-disable object-curly-newline */
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
 import ImageUploader from '../components/ImageUploader';
-// import { useDispatch } from 'react-redux';
+import { createCab } from '../redux/slices/cabSlice';
 
 const AddCab = () => {
   const [imageUrl, setImageUrl] = useState('');
+  const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
   } = useForm();
-  // const dispatch = useDispatch();
-  // const [imageUrl, setImageUrl] = useState('');
-  // const cloudinaryRef = useRef();
-  // useEffect(() => {
-  //   cloudinaryRef.current = window.cloudinary;
-  // }, []);
 
+  // function to handle cab creation
   const handleFormSubmit = (data) => {
-    console.log(data);
-    console.log(imageUrl);
-    // const obj = { name, date, cab, city };
-    // dispatch(createReservation(obj));
+    if (!imageUrl) {
+      toast.error('Kindly upload an image for this cab');
+      return false;
+    }
+    dispatch(createCab({ ...data, image_url: imageUrl }));
     reset();
+    return true;
   };
+
   return (
     <div className="py-16 space-y-8 bg-lime-50 h-screen overflow-auto">
       <h1 className="flex justify-center text-xl md:text-3xl font-bold">

@@ -5,7 +5,7 @@ import { BiLeftArrow } from 'react-icons/bi';
 import { BsCarFront } from 'react-icons/bs';
 import { MdOutlineKeyboardArrowRight } from 'react-icons/md';
 import MultiColorProgressBar from '../components/CircularBar';
-import { fetchCab } from '../redux/slices/fetchCabSlice';
+import { fetchCab } from '../redux/slices/cabSlice';
 
 const CabShow = () => {
   const { id } = useParams();
