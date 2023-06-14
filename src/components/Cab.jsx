@@ -10,7 +10,7 @@ const Cab = ({ cab }) => (
   >
     <Link to={`/cabs/${cab.id}`} className="flex flex-col gap-8 items-center">
       <img
-        src={cab.imageUrl}
+        src={cab.image_url}
         alt={cab.model}
         className="rounded-full aspect-square w-60 "
       />
@@ -42,7 +42,7 @@ Cab.propTypes = {
   cab: PropTypes.shape({
     model: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
-    imageUrl: PropTypes.string.isRequired,
+    image_url: PropTypes.string.isRequired,
     id: PropTypes.number.isRequired,
   }).isRequired,
 };

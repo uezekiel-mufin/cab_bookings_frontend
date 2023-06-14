@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 // import axios from 'axios';
-import cabsData from '../../library/cabs';
+import axios from 'axios';
 
 const initialState = {
   cabs: [],
@@ -16,17 +16,15 @@ const initialState = {
 };
 
 export const fetchCabs = createAsyncThunk('fetchCabs', async () => {
-  // const response = await axios.get('http://localhost:3001/cabs');
-  // return response.data;
-  const response = cabsData;
-  return response;
+  const { data } = await axios.get('http://127.0.0.1:3000/api/v1/cabs');
+  console.log(data);
+  return data;
 });
 
 export const fetchCab = createAsyncThunk('fetchCab', async (id) => {
-  // const response = await axios.get('http://localhost:3001/cabs');
-  // return response.data;
-  const response = await cabsData.find((cab) => cab.id === +id);
-  return response;
+  const { data } = await axios.get(`http://127.0.0.1:3000/api/v1/cabs/${id}`);
+  console.log(data);
+  return data;
 });
 
 const fetchCabSlice = createSlice({

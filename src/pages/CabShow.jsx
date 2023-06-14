@@ -29,11 +29,11 @@ const CabShow = () => {
         <BiLeftArrow className="text-white text-xl" />
       </button>
       <section className="grid lg:pl-10 lg:grid-cols-2">
-        <section className="flex justify-end  pt-20">
+        <section className="flex justify-end mb-4 pt-20">
           <img
-            src={selectedCab.imageUrl}
+            src={selectedCab.image_url}
             alt={selectedCab.model}
-            className="aspect-square w-auto  rounded-lg"
+            className="aspect-square w-[90%]  lg:aspect-video lg:w-auto lg:h-[80%]  rounded-lg"
           />
         </section>
         <section className="flex flex-col gap-8 items-end md:px-6">
@@ -46,7 +46,7 @@ const CabShow = () => {
           <section className="flex w-full flex-col  items-end space-y-2">
             <span className="flex font-semibold rounded-sm text-lg w-full xl:w-[80%] justify-between px-4 tracking-wider py-2 bg-gray-200">
               <h4>Rental Price</h4>
-              <p className=" ">{`$${selectedCab.rentalPrice}/2KM`}</p>
+              <p className=" ">{`$${selectedCab.rental_price}/2KM`}</p>
             </span>
             <span className="flex font-semibold rounded-md text-lg w-full xl:w-[80%] justify-between px-4 tracking-wider py-1 ">
               <h4>Manufacturer:</h4>
@@ -54,11 +54,11 @@ const CabShow = () => {
             </span>
             <span className="flex font-semibold rounded-sm text-lg w-full xl:w-[80%] justify-between px-4 tracking-wider py-2 bg-gray-200">
               <h4>Capacity:</h4>
-              <p className=" font-bold">{selectedCab.seatingCapacity}</p>
+              <p className=" font-bold">{selectedCab.seating_capacity}</p>
             </span>
             <span className="flex font-semibold rounded-md text-lg w-full xl:w-[80%] justify-between px-4 tracking-wider py-1">
               <h4>Body Type:</h4>
-              <p className=" font-bold">{selectedCab.bodyType}</p>
+              <p className=" font-bold">{selectedCab.body_type}</p>
             </span>
             <span className="flex font-semibold rounded-sm text-lg w-full xl:w-[80%] justify-between px-4 tracking-wider py-2 bg-gray-200">
               <h4>Transmission:</h4>
