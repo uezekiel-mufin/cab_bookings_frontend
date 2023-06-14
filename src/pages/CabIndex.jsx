@@ -20,18 +20,18 @@ const CabIndex = () => {
   }, [cabs]);
 
   return (
-    <main className="py-8 transition-all duration-300 ease-linear">
-      <header className="flex flex-col gap-4 items-center">
-        <h1 className="font-extrabold text-[#645858] text-5xl capitalize">
+    <main className="py-16 transition-all duration-300 ease-linear">
+      <header className="flex flex-col gap-2 md:gap-4 items-center">
+        <h1 className="font-extrabold text-[#645858] text-2xl lg:text-3xl xl:text-5xl capitalize">
           Secure your ride
         </h1>
-        <p className="text-base font-semibold italic text-[#8f8787]">
+        <p className="text-sm md:text-base font-semibold italic text-[#8f8787]">
           Please select a cab for rentals
         </p>
         <hr className="border-dotted w-[300px] mt-4 font-bold text-2xl border-[3px]" />
       </header>
       <section className="">
-        <ul className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 relative gap-8 overflow-auto items-center transition-all duration-300 ease-linear justify-center p-12 px-32">
+        <ul className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 relative gap-8 gap-y-16 overflow-auto items-center transition-all duration-300 ease-linear justify-center p-12 px-4 md:px-12 lg:px-20 xl:px-32">
           <button
             className={`absolute top-1/2 left-0 transform -translate-y-1/2 ${
               currentPage > 1 ? 'bg-lime-400' : 'bg-slate-200'
@@ -53,7 +53,7 @@ const CabIndex = () => {
             <BiRightArrow className="text-white text-xl" />
           </button>
           {cabsLists.map((cab) => (
-            <motion.div key={cab.id}>
+            <motion.div key={cab.id} className="shadow-xl p-4 lg:shadow-none">
               <Cab cab={cab} />
             </motion.div>
           ))}
