@@ -23,7 +23,7 @@ const AddCab = () => {
       toast.error('Kindly upload an image for this cab');
       return false;
     }
-    dispatch(createCab({ ...data, image_url: imageUrl }));
+    dispatch(createCab({ ...data, image_url: imageUrl, user_id: 1 }));
     reset();
     return true;
   };
