@@ -40,7 +40,7 @@ const NewReservation = () => {
         </h1>
         <form
           onSubmit={handleSubmit(handleFormSubmit)}
-          className="w-full md:w-[450px]"
+          className="w-full md:w-[450px] mb-12"
         >
           <div className="flex flex-col">
             <label htmlFor="city">
