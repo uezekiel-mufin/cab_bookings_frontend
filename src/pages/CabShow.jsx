@@ -19,24 +19,24 @@ const CabShow = () => {
 
   if (loading) return <div>Loading...</div>;
   return (
-    <main className="p-10 px-16  relative h-screen text-[#645858] ">
+    <main className="px-4 md:p-10 md:px-4 xl:pl-16 py-8 overflow-auto relative h-screen text-[#645858] ">
       <button
-        className="absolute bottom-12 left-0 transform
+        className="hidden lg:flex absolute bottom-0  lg:bottom-12 left-0 transform
           p-5 pl-16 rounded-r-full bg-lime-400"
         type="button"
         onClick={() => window.history.back()}
       >
         <BiLeftArrow className="text-white text-xl" />
       </button>
-      <section className="grid pl-10 grid-cols-2">
+      <section className="grid lg:pl-10 lg:grid-cols-2">
         <section className="flex justify-end  pt-20">
           <img
             src={selectedCab.imageUrl}
             alt={selectedCab.model}
-            className="aspect-square  rounded-lg"
+            className="aspect-square w-auto  rounded-lg"
           />
         </section>
-        <section className="flex flex-col gap-8 items-end px-6">
+        <section className="flex flex-col gap-8 items-end md:px-6">
           <header className="flex flex-col items-end">
             <h1 className="font-bold text-3xl">{selectedCab.model}</h1>
             <p className="font-semibold tracking-wide text-lg">
@@ -44,27 +44,27 @@ const CabShow = () => {
             </p>
           </header>
           <section className="flex w-full flex-col  items-end space-y-2">
-            <span className="flex font-semibold rounded-sm text-lg w-[60%] justify-between px-4 tracking-wider py-2 bg-gray-200">
+            <span className="flex font-semibold rounded-sm text-lg w-full xl:w-[80%] justify-between px-4 tracking-wider py-2 bg-gray-200">
               <h4>Rental Price</h4>
               <p className=" ">{`$${selectedCab.rentalPrice}/2KM`}</p>
             </span>
-            <span className="flex font-semibold rounded-md text-lg w-[60%] justify-between px-4 tracking-wider py-1 ">
+            <span className="flex font-semibold rounded-md text-lg w-full xl:w-[80%] justify-between px-4 tracking-wider py-1 ">
               <h4>Manufacturer:</h4>
               <p className=" font-bold">{selectedCab.manufacturer}</p>
             </span>
-            <span className="flex font-semibold rounded-sm text-lg w-[60%] justify-between px-4 tracking-wider py-2 bg-gray-200">
+            <span className="flex font-semibold rounded-sm text-lg w-full xl:w-[80%] justify-between px-4 tracking-wider py-2 bg-gray-200">
               <h4>Capacity:</h4>
               <p className=" font-bold">{selectedCab.seatingCapacity}</p>
             </span>
-            <span className="flex font-semibold rounded-md text-lg w-[60%] justify-between px-4 tracking-wider py-1">
+            <span className="flex font-semibold rounded-md text-lg w-full xl:w-[80%] justify-between px-4 tracking-wider py-1">
               <h4>Body Type:</h4>
               <p className=" font-bold">{selectedCab.bodyType}</p>
             </span>
-            <span className="flex font-semibold rounded-sm text-lg w-[60%] justify-between px-4 tracking-wider py-2 bg-gray-200">
+            <span className="flex font-semibold rounded-sm text-lg w-full xl:w-[80%] justify-between px-4 tracking-wider py-2 bg-gray-200">
               <h4>Transmission:</h4>
               <p className=" font-bold">{selectedCab.transmission}</p>
             </span>
-            <span className="flex rounded-sm text-lg w-full justify-end px-4 tracking-wider py-2">
+            <span className="flex rounded-sm text-lg w-full xl-w-[80%] justify-end px-4 tracking-wider py-2">
               <h4 className="flex m-0 gap-1">
                 <span className="font-bold text-xl">
                   {`${selectedCab.discount}% `}

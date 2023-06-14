@@ -33,12 +33,15 @@ const NewReservation = () => {
     reset();
   };
   return (
-    <main className="flex w-full h-screen text-[#645858] bg-lime-200 justify-center pt-20">
+    <main className="flex w-full h-screen px-4 overflow-auto text-[#645858]  justify-center pt-20">
       <section>
         <h1 className="flex justify-center font-weight text-4xl mb-8 font-bold">
           Reserve a New Cab
         </h1>
-        <form onSubmit={handleSubmit(handleFormSubmit)} className="w-[450px]">
+        <form
+          onSubmit={handleSubmit(handleFormSubmit)}
+          className="w-full md:w-[450px]"
+        >
           <div className="flex flex-col">
             <label htmlFor="city">
               City

@@ -14,7 +14,6 @@ const ImageUploader = ({ setImageUrl }) => {
 
   const uploadToCloudinary = async () => {
     setLoading(true);
-    setUploadStarted(true);
     const widget = cloudinaryRef.current.createUploadWidget(
       {
         cloudName: process.env.REACT_APP_CLOUDINARY_CLOUD_NAME,
@@ -33,6 +32,7 @@ const ImageUploader = ({ setImageUrl }) => {
       },
     );
     widget.open();
+    setLoading(false);
   };
 
   return (
