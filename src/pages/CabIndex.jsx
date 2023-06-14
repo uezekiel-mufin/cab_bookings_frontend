@@ -20,7 +20,7 @@ const CabIndex = () => {
   }, [cabs]);
 
   return (
-    <main className="py-16 transition-all duration-300 ease-linear">
+    <main className="py-16 transition-all h-screen overflow-auto duration-300 ease-linear">
       <header className="flex flex-col gap-2 md:gap-4 items-center">
         <h1 className="font-extrabold text-[#645858] text-2xl lg:text-3xl xl:text-5xl capitalize">
           Secure your ride
@@ -30,12 +30,12 @@ const CabIndex = () => {
         </p>
         <hr className="border-dotted w-[300px] mt-4 font-bold text-2xl border-[3px]" />
       </header>
-      <section className="">
-        <ul className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 relative gap-8 gap-y-16 overflow-auto items-center transition-all duration-300 ease-linear justify-center p-12 px-4 md:px-12 lg:px-20 xl:px-32">
+      <section className="mb-16 lg:mb-0">
+        <ul className="grid pb-12 grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 relative gap-8 gap-y-16  items-center transition-all duration-300 ease-linear justify-center p-12 px-4 md:px-12 lg:px-20 xl:px-32">
           <button
-            className={`absolute top-1/2 left-0 transform -translate-y-1/2 ${
+            className={`absolute top-full my-8 lg:top-1/2 left-0 transform -translate-y-1/2 ${
               currentPage > 1 ? 'bg-lime-400' : 'bg-slate-200'
-            } p-8 pl-16 rounded-r-full`}
+            } p-6 lg:p-8 pl-10 lg:pl-16 rounded-r-full`}
             type="button"
             onClick={() => dispatch(prevCab())}
             disabled={currentPage === 1}
@@ -43,9 +43,9 @@ const CabIndex = () => {
             <BiLeftArrow className="text-white text-xl" />
           </button>
           <button
-            className={`absolute top-1/2 right-0 transform -translate-y-1/2 ${
+            className={`absolute top-full my-8 lg:top-1/2 right-0 transform -translate-y-1/2 ${
               currentPage === numOfPages - 2 ? 'bg-slate-200' : 'bg-lime-400'
-            } p-8 pr-16 rounded-l-full`}
+            } p-6 lg:p-8 pr-10 lg:pr-16 rounded-l-full`}
             type="button"
             onClick={() => dispatch(nextCab())}
             disabled={currentPage === numOfPages - 2}
