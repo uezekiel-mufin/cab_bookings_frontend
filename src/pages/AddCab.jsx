@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable object-curly-newline */
 import React, { useState } from 'react';
+import { Circles } from 'react-loader-spinner';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
@@ -9,6 +10,7 @@ import { createCab } from '../redux/slices/cabSlice';
 
 const AddCab = () => {
   const [imageUrl, setImageUrl] = useState('');
+  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const {
     register,
@@ -18,13 +20,25 @@ const AddCab = () => {
   } = useForm();
 
   // function to handle cab creation
-  const handleFormSubmit = (data) => {
-    if (!imageUrl) {
-      toast.error('Kindly upload an image for this cab');
-      return false;
+  const handleFormSubmit = async (data) => {
+    try {
+      if (!imageUrl) {
+        toast.error('Kindly upload an image for this cab');
+        return false;
+      }
+      setLoading(true);
+      const result = await dispatch(
+        createCab({ ...data, image_url: imageUrl, user_id: 1 }),
+      );
+      if (result.payload.id) {
+        setLoading(false);
+      }
+      reset();
+    } catch (error) {
+      setLoading(false);
+      toast.error('An error occurred. Please try again later.');
     }
-    dispatch(createCab({ ...data, image_url: imageUrl, user_id: 1 }));
-    reset();
+
     return true;
   };
 
@@ -203,9 +217,22 @@ const AddCab = () => {
         <div className="md:col-span-2 flex justify-center">
           <button
             type="submit"
-            className="bg-lime-500 w-full flex gap-2 items-center text-white rounded-md justify-center text-2xl px-8 py-3"
+            className="bg-lime-500
+            w-full lg:w-[300px] flex gap-2 items-center transition-all duration-300 text-white rounded-md justify-center text-2xl px-8 py-2"
           >
-            Add New Cab
+            {loading ? (
+              <Circles
+                height="50"
+                width="50"
+                color="#ffffff"
+                ariaLabel="circles-loading"
+                wrapperStyle={{}}
+                wrapperClass=""
+                visible={loading}
+              />
+            ) : (
+              <h4> Add New Cab</h4>
+            )}
           </button>
         </div>
       </form>
