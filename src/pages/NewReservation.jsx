@@ -1,24 +1,17 @@
 /* eslint-disable object-curly-newline */
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchUser } from '../redux/slices/userSlice';
 import { createReservation } from '../redux/slices/reservationSlice';
 
 const NewReservation = () => {
   const dispatch = useDispatch();
   const { state } = useLocation();
   const { user } = useSelector((state) => state.user);
-  const { message } = useSelector((state) => state.reservation);
   const { cabs } = useSelector((state) => state.fetchCab);
-
-  useEffect(() => {
-    dispatch(fetchUser());
-  }, [dispatch]);
-
-  console.log(message);
+  const [selectedCab, setSelectedCab] = useState('');
 
   const {
     register,
@@ -26,12 +19,14 @@ const NewReservation = () => {
     formState: { errors },
     reset,
   } = useForm();
-  const handleFormSubmit = ({ name, date, cab, city }) => {
-    console.log(name, date, cab, city);
-    const obj = { name, date, cab, city };
+
+  const handleFormSubmit = async ({ date, cab, city }) => {
+    const obj = { user_id: user.id, reserve_date: date, cab_id: cab, city };
     dispatch(createReservation(obj));
+    setSelectedCab('');
     reset();
   };
+
   return (
     <main className="flex w-full h-screen px-4 overflow-auto text-[#645858]  justify-center pt-20">
       <section>
@@ -81,13 +76,14 @@ const NewReservation = () => {
                 {...register('cab', {
                   required: 'Please choose a cab',
                 })}
-                value={state?.model || ''}
+                value={state?.model || selectedCab}
+                onChange={(e) => setSelectedCab(e.target.value)}
               >
                 <option value="" disabled>
                   Select a cab
                 </option>
                 {cabs.map((cab) => (
-                  <option key={cab.id} value={cab.model}>
+                  <option key={cab.id} value={cab.id}>
                     {cab.model}
                   </option>
                 ))}
@@ -102,7 +98,8 @@ const NewReservation = () => {
                 type="text"
                 name="name"
                 id="name"
-                defaultValue={user?.name || 'John Doe'}
+                disabled
+                defaultValue={user?.name}
                 {...register('name', {
                   required: true,
                   message: 'Please choose a name',

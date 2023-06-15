@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { BiLeftArrow, BiRightArrow } from 'react-icons/bi';
 import { motion } from 'framer-motion';
-import { fetchCabs, nextCab, prevCab } from '../redux/slices/cabSlice';
+import { nextCab, prevCab } from '../redux/slices/cabSlice';
 import Cab from '../components/Cab';
 
 const CabIndex = () => {
@@ -11,9 +11,6 @@ const CabIndex = () => {
   const cabs = useSelector((state) => state.fetchCab.displayedCabs);
   const currentPage = useSelector((state) => state.fetchCab.currentPage);
   const numOfPages = useSelector((state) => state.fetchCab.numOfPages);
-  useEffect(() => {
-    dispatch(fetchCabs());
-  }, [dispatch]);
 
   useEffect(() => {
     setCabsLists(cabs);

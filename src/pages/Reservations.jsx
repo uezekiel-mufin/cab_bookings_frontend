@@ -1,7 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchReservations } from '../redux/slices/reservationSlice';
 
 const Reservations = () => {
-  console.log('this is the reservations page');
+  const dispatch = useDispatch();
+  const { reservations } = useSelector((state) => state.reservation);
+  const { user } = useSelector((state) => state.user);
+  console.log(reservations);
+
+  useEffect(() => {
+    dispatch(fetchReservations(user?.id));
+  }, [dispatch, user?.id]);
+
   return <div className="h-screen">Reservations</div>;
 };
 

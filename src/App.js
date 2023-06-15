@@ -3,10 +3,18 @@ import { Outlet } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import { AiOutlineMenuUnfold } from 'react-icons/ai';
 // import { MdClose } from 'react-icons/md';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import Navbar from './components/Navbar';
 import 'react-toastify/dist/ReactToastify.css';
+import { fetchCabs } from './redux/slices/cabSlice';
 
 function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchCabs());
+  }, [dispatch]);
+
   return (
     <div className="grid  grid-cols-1 md:grid-cols-7 lg:grid-cols-11 overflow-auto divide-x-2 divide-gray-200">
       <section className="flex p-4 md:hidden fixed top-0 left-0 ">

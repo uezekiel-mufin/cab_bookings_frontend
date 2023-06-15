@@ -1,24 +1,37 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
-
-// import axios from 'axios';
+import axios from 'axios';
 
 const initialState = {
   reservations: [],
-  message: '',
   loading: false,
 };
+
+export const fetchReservations = createAsyncThunk(
+  'fetchReservations',
+  async (user) => {
+    const { data } = await axios.get(
+      'http://localhost:3000/api/v1/reservations',
+      {
+        params: {
+          user,
+        },
+      },
+    );
+    return data;
+  },
+);
 
 export const createReservation = createAsyncThunk(
   'createReservation',
   async (obj) => {
-    // const { data } = axios.post('http://localhost:3000/api/v1/reservations', {
-    //   body: obj,
-    // return data;
-    // }
-    // );
-    const response = { obj, message: 'Succesful' };
-    return response;
+    const { data } = await axios.post(
+      'http://localhost:3000/api/v1/reservations',
+      {
+        reservation: obj,
+      },
+    );
+    return data;
   },
 );
 
@@ -30,14 +43,25 @@ const reservationSlice = createSlice({
     builders.addCase(createReservation.pending, (state) => {
       state.loading = true;
     });
-    builders.addCase(createReservation.fulfilled, (state, action) => {
+    builders.addCase(createReservation.fulfilled, (state) => {
       state.loading = false;
-      state.message = action.payload;
       toast.success('Your reservation has been created');
     });
     builders.addCase(createReservation.rejected, (state) => {
       state.loading = false;
       state.error = 'There was an error creating the reservation';
+      toast.error('There was an error creating the reservation');
+    });
+    builders.addCase(fetchReservations.pending, (state) => {
+      state.loading = true;
+    });
+    builders.addCase(fetchReservations.fulfilled, (state, action) => {
+      state.loading = false;
+      state.reservations = action.payload;
+    });
+    builders.addCase(fetchReservations.rejected, (state) => {
+      state.loading = false;
+      state.error = 'There was an error fetching the reservations';
     });
   },
 });
