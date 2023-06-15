@@ -25,14 +25,14 @@ export const fetchReservations = createAsyncThunk(
 export const createReservation = createAsyncThunk(
   'createReservation',
   async (obj) => {
-    const { data } = await axios.post(
+    const response = await axios.post(
       'http://localhost:3000/api/v1/reservations',
       {
         reservation: obj,
       },
     );
-    console.log(data);
-    return data;
+
+    return response.statusText;
   },
 );
 

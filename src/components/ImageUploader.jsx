@@ -23,7 +23,6 @@ const ImageUploader = ({ setImageUrl }) => {
       (error, result) => {
         if (!error && result && result.event === 'success') {
           setImageUrl(result.info.url);
-          toast.success('Image uploaded successfully');
           setLoading(false);
           setUploadStarted(true);
         } else if (error) {
@@ -40,7 +39,7 @@ const ImageUploader = ({ setImageUrl }) => {
       <button
         type="button"
         onClick={uploadToCloudinary}
-        className="px-3 py-2 bg-transparent border border-gray-600  hover:scale-105 customTransition rounded-lg"
+        className="px-3 py-2 bg-transparent border border-lime-500  hover:scale-105 customTransition rounded-lg"
       >
         {uploadStarted ? (
           loading ? (

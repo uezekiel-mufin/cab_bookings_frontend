@@ -44,12 +44,12 @@ const AddCab = () => {
 
   return (
     <div className="py-16 space-y-8 bg-lime-50 h-screen overflow-auto">
-      <h1 className="flex justify-center text-xl md:text-3xl font-bold">
+      <h1 className="flex justify-center text-xl md:text-3xl text-lime-800 font-bold">
         Add a New Cab for Rentals
       </h1>
       <form
         onSubmit={handleSubmit(handleFormSubmit)}
-        className="w-full grid grid-cols-1 gap-4 md:grid-cols-2 mb-20 px-4 md:px-10 lg:px-20 xl:px-40 md:gap-x-8"
+        className="w-full grid grid-cols-1 gap-4 md:grid-cols-2 mb-20 px-4 md:px-10 text-lime-800 lg:px-20 xl:px-40 md:gap-x-8"
       >
         <div className="">
           <label htmlFor="model">
@@ -209,7 +209,7 @@ const AddCab = () => {
           {errors.description && <span>{errors.description.message}</span>}
         </div>
         <div className="md:col-span-2">
-          <h5 className="block font-semibold text-base">Image</h5>
+          <h5 className="block font-semibold text-xl">Image</h5>
           <ImageUploader setImageUrl={setImageUrl} />
           {errors.image_url && <span>{errors.image_url.message}</span>}
         </div>

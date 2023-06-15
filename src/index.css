@@ -10,14 +10,19 @@ body {
 input,
 select,
 textarea {
-  border: 1px solid rgb(18, 99, 18);
+  border: 1px solid limegreen;
   border-radius: 4px;
   padding: 1rem 1rem;
   width: 100%;
   box-sizing: border-box;
   margin-bottom: 10px;
   font-weight: 400;
-  background-color: rgba(42, 61, 14, 0.5);
+  background-color: transparent;
+}
+
+select {
+  background-color: whitesmoke;
+  color: black;
 }
 
 input:focus,
