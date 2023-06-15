@@ -1,11 +1,13 @@
+import Cookies from 'js-cookie';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
+const mockUser = {
+  id: 1,
+  name: 'John Doe',
+};
 const initialState = {
-  user: {
-    id: 1,
-    name: 'John Doe',
-  },
+  user: Cookies.get('user') ? JSON.parse(Cookies.get('user')) : mockUser,
   loading: false,
   error: '',
 };

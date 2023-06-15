@@ -1,10 +1,10 @@
 import './App.css';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
+// import Cookies from 'js-cookie';
 import { AiOutlineMenuUnfold } from 'react-icons/ai';
-// import { MdClose } from 'react-icons/md';
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Navbar from './components/Navbar';
 import 'react-toastify/dist/ReactToastify.css';
 import { fetchCabs } from './redux/slices/cabSlice';
@@ -12,16 +12,17 @@ import { fetchCabs } from './redux/slices/cabSlice';
 function App() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.user);
+
   useEffect(() => {
     dispatch(fetchCabs());
   }, [dispatch]);
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (!token) {
+    if (!user) {
       navigate('/login');
     }
-  }, [navigate]);
+  }, [navigate, user]);
 
   return (
     <div className="grid  grid-cols-1 md:grid-cols-7 lg:grid-cols-11 overflow-auto divide-x-2 divide-gray-200">
