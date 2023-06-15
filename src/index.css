@@ -10,13 +10,14 @@ body {
 input,
 select,
 textarea {
-  border: 1px solid limegreen;
+  border: 1px solid rgb(18, 99, 18);
   border-radius: 4px;
-  padding: 0.5rem 1rem;
+  padding: 1rem 1rem;
   width: 100%;
   box-sizing: border-box;
   margin-bottom: 10px;
   font-weight: 400;
+  background-color: rgba(42, 61, 14, 0.5);
 }
 
 input:focus,
@@ -29,5 +30,5 @@ textarea:focus {
 label {
   display: block;
   font-weight: 600;
-  font-size: 1rem;
+  font-size: 1.2rem;
 }

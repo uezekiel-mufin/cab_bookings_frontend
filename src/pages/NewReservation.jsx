@@ -28,10 +28,10 @@ const NewReservation = () => {
   };
 
   return (
-    <main className="flex w-full h-screen px-4 overflow-auto text-[#645858]  justify-center pt-20">
-      <section>
-        <h1 className="flex justify-center font-weight text-4xl mb-8 font-bold">
-          Reserve a New Cab
+    <main className="flex w-full h-screen px-4 bg-reserve-bg bg-reserve-color bg-blend-multiply text-white bg-center bg-cover overflow-auto items-center gap-12 justify-center pt-20">
+      <section className="">
+        <h1 className="flex tracking-widest justify-center font-weight text-4xl mb-8 font-bold">
+          Book a Ride with Carbooky!
         </h1>
         <form
           onSubmit={handleSubmit(handleFormSubmit)}
@@ -112,7 +112,7 @@ const NewReservation = () => {
           <div>
             <button
               type="submit"
-              className="bg-lime-500 w-full mt-8 flex gap-2 items-center text-white rounded-md justify-center text-2xl px-8 py-3"
+              className="bg-white w-full mt-8 flex gap-2 items-center text-gray-800 rounded-md justify-center text-2xl px-8 py-3"
             >
               Reserve Now
             </button>

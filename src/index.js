@@ -12,6 +12,8 @@ import NewReservation from './pages/NewReservation';
 import store from './redux/store/store';
 import CabShow from './pages/CabShow';
 import DeleteCab from './pages/DeleteCab';
+import Login from './pages/Login';
+import Signup from './pages/Signup';
 
 const router = createBrowserRouter([
   {
@@ -44,6 +46,14 @@ const router = createBrowserRouter([
         element: <DeleteCab />,
       },
     ],
+  },
+  {
+    path: '/login',
+    element: <Login />,
+  },
+  {
+    path: '/signup',
+    element: <Signup />,
   },
 ]);
 
