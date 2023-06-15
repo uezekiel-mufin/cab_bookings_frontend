@@ -30,12 +30,12 @@ const NewReservation = () => {
   return (
     <main className="flex w-full h-screen px-4 bg-reserve-bg bg-reserve-color bg-blend-multiply text-white bg-center bg-cover overflow-auto items-center gap-12 justify-center pt-20">
       <section className="">
-        <h1 className="flex tracking-widest justify-center font-weight text-4xl mb-8 font-bold">
+        <h1 className="flex tracking-widest justify-center font-weight text-xl md:text-3xl lg:text-4xl mb-8 font-bold">
           Book a Ride with Carbooky!
         </h1>
         <form
           onSubmit={handleSubmit(handleFormSubmit)}
-          className="w-full md:w-[450px] mb-12"
+          className="w-full  mb-12"
         >
           <div className="flex flex-col">
             <label htmlFor="city">
@@ -112,7 +112,7 @@ const NewReservation = () => {
           <div>
             <button
               type="submit"
-              className="bg-white w-full mt-8 flex gap-2 items-center text-gray-800 rounded-md justify-center text-2xl px-8 py-3"
+              className="bg-white hover:bg-[#e4e1e1] transition-all duration-300 ease-linear w-full mt-8 flex gap-2 items-center text-gray-800 rounded-md justify-center text-2xl px-8 py-3"
             >
               Reserve Now
             </button>

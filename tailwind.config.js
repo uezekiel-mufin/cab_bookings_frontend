@@ -15,7 +15,7 @@ module.exports = {
         'reserve-bg': "url('/public/images/teslas.webp')",
       }),
       backgroundColor: (theme) => ({
-        'reserve-color': 'rgba(101, 163, 13, 0.3)',
+        'reserve-color': 'rgba(101, 163, 13, 0.7)',
       }),
       backgroundSize: {
         'auto-100': 'auto 100%',
