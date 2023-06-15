@@ -20,8 +20,10 @@ const NewReservation = () => {
     reset,
   } = useForm();
 
-  const handleFormSubmit = async ({ date, cab, city }) => {
+  const handleFormSubmit = ({ date, cab, city }) => {
+    console.log('started');
     const obj = { user_id: user.id, reserve_date: date, cab_id: cab, city };
+    console.log(obj);
     dispatch(createReservation(obj));
     setSelectedCab('');
     reset();
@@ -35,7 +37,7 @@ const NewReservation = () => {
         </h1>
         <form
           onSubmit={handleSubmit(handleFormSubmit)}
-          className="w-full  mb-12"
+          className="w-full mb-12"
         >
           <div className="flex flex-col">
             <label htmlFor="city">
@@ -98,7 +100,6 @@ const NewReservation = () => {
                 type="text"
                 name="name"
                 id="name"
-                disabled
                 defaultValue={user?.name}
                 {...register('name', {
                   required: true,

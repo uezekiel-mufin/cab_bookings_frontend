@@ -31,7 +31,21 @@ export const createReservation = createAsyncThunk(
         reservation: obj,
       },
     );
+    console.log(data);
     return data;
+  },
+);
+
+export const deleteReservation = createAsyncThunk(
+  'deleteReservation',
+  async (id) => {
+    const response = await axios.delete(
+      `http://localhost:3000/api/v1/reservations/${id}`,
+    );
+    if (response.statusText === 'ok') {
+      toast.success('Your reservation has been deleted');
+    }
+    return response.statusText;
   },
 );
 
