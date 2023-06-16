@@ -18,7 +18,6 @@ export const fetchReservations = createAsyncThunk(
       },
     });
     const { data } = response;
-    console.log(response);
     return data;
   },
 );

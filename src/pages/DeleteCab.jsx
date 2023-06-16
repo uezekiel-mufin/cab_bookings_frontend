@@ -6,7 +6,6 @@ import { deleteCab, setUserCabs } from '../redux/slices/cabSlice';
 
 const DeleteCab = () => {
   const dispatch = useDispatch();
-  // const { cabs } = useSelector((state) => state.fetchCab);
   const { userCabs } = useSelector((state) => state.fetchCab);
   const { user } = useSelector((state) => state.user);
   const [newCabs, setNewCabs] = useState([]);
@@ -21,6 +20,7 @@ const DeleteCab = () => {
     setNewCabs(userCabs);
   }, [userCabs]);
 
+  // Function to delete a cab using its id
   const handleDelete = async (id) => {
     setSelectedId(id);
     setLoading(true);
@@ -34,6 +34,7 @@ const DeleteCab = () => {
     }
     setLoading(false);
   };
+
   return (
     <div className="h-screen bg-lime-50 space-y-8 pt-10 text-lime-800 md:px-10 lg:px-20">
       <h1 className="text-3xl text-center font-bold tracking-widest">

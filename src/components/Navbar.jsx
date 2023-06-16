@@ -52,7 +52,7 @@ const Navbar = () => {
             className="flex p-4 md:hidden "
             onClick={() => dispatch(toggleMenu())}
           >
-            <MdOutlineClose className="text-3xl text-gray-800" />
+            <MdOutlineClose className="text-3xl text-lime-800" />
           </button>
         </div>
         <nav>

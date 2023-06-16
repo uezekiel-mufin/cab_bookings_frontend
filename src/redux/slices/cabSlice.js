@@ -11,6 +11,7 @@ const initialState = {
   userCabs: [],
   selectedCab: {},
   loading: false,
+  cabsLoading: false,
   error: '',
   pageCounter: 0,
   numOfPages: 0,
@@ -99,15 +100,15 @@ const fetchCabSlice = createSlice({
       state.loading = false;
     });
     builder.addCase(fetchCab.pending, (state) => {
-      state.loading = true;
+      state.cabsLoading = true;
     });
     builder.addCase(fetchCab.fulfilled, (state, action) => {
       state.selectedCab = action.payload;
-      state.loading = false;
+      state.cabsLoading = false;
     });
     builder.addCase(fetchCab.rejected, (state, action) => {
       state.error = action.error.message;
-      state.loading = false;
+      state.cabsLoading = false;
     });
     builder.addCase(deleteCab.pending, (state) => {
       state.loading = true;

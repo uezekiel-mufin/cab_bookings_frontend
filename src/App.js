@@ -36,7 +36,7 @@ function App() {
           className="flex p-4 md:hidden w-auto fixed z-0 left-0 top-0  "
           onClick={() => dispatch(toggleMenu())}
         >
-          <AiOutlineMenuUnfold className="text-3xl text-gray-800" />
+          <AiOutlineMenuUnfold className="text-3xl text-lime-800" />
         </button>
       )}
       <section className="hidden w-full md:flex md:col-span-2 max-h-screen lg:col-span-2">
@@ -44,7 +44,7 @@ function App() {
         <Navbar />
       </section>
       {isMenuOpen && (
-        <section className="w-full flex md:hidden md:col-span-2 z-10 h-screen lg:col-span-2">
+        <section className="animate-slide-in w-full flex md:hidden md:col-span-2 z-10 h-screen lg:col-span-2">
           <Navbar />
         </section>
       )}
