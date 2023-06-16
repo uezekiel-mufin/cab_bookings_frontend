@@ -1,14 +1,16 @@
 /* eslint-disable object-curly-newline */
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { FaMediumM, FaTwitter, FaInstagram, FaFacebook } from 'react-icons/fa';
 import { MdOutlineClose } from 'react-icons/md';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { toggleMenu } from '../redux/slices/menuSlice';
 
 const Navbar = () => {
   const [activeLink, setActiveLink] = useState(1);
   const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.user);
+  const location = useLocation();
   const navLinks = [
     {
       id: 1,
@@ -40,12 +42,18 @@ const Navbar = () => {
 
   const handleLinkClick = (id) => {
     setActiveLink(id);
+    dispatch(toggleMenu());
   };
 
+  useEffect(() => {
+    const link = navLinks.find((item) => item.path === location.pathname);
+    setActiveLink(link.id);
+  }, [location.pathname]);
+
   return (
-    <div className="max-h-screen z-10 flex flex-col w-full justify-between py-6">
-      <section className="flex justify-between gap-12 pl-6 flex-col">
-        <div className="flex justify-between items-center w-full">
+    <div className="max-h-screen z-10 flex pl-4 flex-col w-full justify-between py-6">
+      <section className="flex justify-between gap-12  flex-col">
+        <div className="flex justify-between px-4 items-center w-full">
           <h1 className="text-indigo-500 text-3xl  font-extrabold">CarBooky</h1>
           <button
             type="button"
@@ -56,14 +64,14 @@ const Navbar = () => {
           </button>
         </div>
         <nav>
-          <ul className="flex flex-col  text-lg font-bold text-[#6d6b6b]">
+          <ul className="flex flex-col mt-8 text-lg font-bold text-lime-800">
             {navLinks.map((link) => (
               <Link to={link.path} key={link.id}>
                 <li
                   onClick={() => handleLinkClick(link.id)}
                   className={`${
                     activeLink === link.id && 'bg-lime-600 text-white'
-                  } px-4 py-3 transition-all duration-300 cursor-pointer ease-linear`}
+                  } px-4 py-2 transition-all duration-300 cursor-pointer ease-linear`}
                   role="presentation"
                 >
                   {link.name}
@@ -71,6 +79,13 @@ const Navbar = () => {
               </Link>
             ))}
           </ul>
+          <div className="flex px-4 justify-start">
+            {user && (
+              <button type="button" className="text-lime-800 font-bold text-lg">
+                Logout
+              </button>
+            )}
+          </div>
         </nav>
       </section>
       <section className="space-y-3 flex flex-col items-center">
