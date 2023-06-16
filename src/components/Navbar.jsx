@@ -2,9 +2,13 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaMediumM, FaTwitter, FaInstagram, FaFacebook } from 'react-icons/fa';
+import { MdOutlineClose } from 'react-icons/md';
+import { useDispatch } from 'react-redux';
+import { toggleMenu } from '../redux/slices/menuSlice';
 
 const Navbar = () => {
   const [activeLink, setActiveLink] = useState(1);
+  const dispatch = useDispatch();
   const navLinks = [
     {
       id: 1,
@@ -39,9 +43,18 @@ const Navbar = () => {
   };
 
   return (
-    <div className="hidden max-h-screen  md:flex flex-col w-full justify-between py-6">
-      <section className="flex justify-between gap-24 pl-6 flex-col">
-        <h1 className="text-indigo-500 text-3xl  font-extrabold">CarBooky</h1>
+    <div className="max-h-screen z-10 flex flex-col w-full justify-between py-6">
+      <section className="flex justify-between gap-12 pl-6 flex-col">
+        <div className="flex justify-between items-center w-full">
+          <h1 className="text-indigo-500 text-3xl  font-extrabold">CarBooky</h1>
+          <button
+            type="button"
+            className="flex p-4 md:hidden "
+            onClick={() => dispatch(toggleMenu())}
+          >
+            <MdOutlineClose className="text-3xl text-gray-800" />
+          </button>
+        </div>
         <nav>
           <ul className="flex flex-col  text-lg font-bold text-[#6d6b6b]">
             {navLinks.map((link) => (
@@ -50,7 +63,7 @@ const Navbar = () => {
                   onClick={() => handleLinkClick(link.id)}
                   className={`${
                     activeLink === link.id && 'bg-lime-600 text-white'
-                  } px-4 py-2 transition-all duration-300 cursor-pointer ease-linear`}
+                  } px-4 py-3 transition-all duration-300 cursor-pointer ease-linear`}
                   role="presentation"
                 >
                   {link.name}
