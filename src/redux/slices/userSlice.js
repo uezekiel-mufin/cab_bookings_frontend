@@ -8,6 +8,7 @@ const mockUser = {
 };
 
 const url = process.env.REACT_APP_API_URL;
+const usersUrl = process.env.REACT_APP_USERS_URL;
 
 const initialState = {
   user: Cookies.get('user') ? JSON.parse(Cookies.get('user')) : mockUser,
@@ -20,6 +21,22 @@ export const fetchUser = createAsyncThunk('user/fetchUser', async (user) => {
     body: JSON.stringify(user),
   });
   const data = await response.json();
+  return data;
+});
+
+export const loginUser = createAsyncThunk('user/loginUser', async (user) => {
+  const response = await axios.post(`${usersUrl}/sign_in`, {
+    body: JSON.stringify(user),
+  });
+  const { data } = response;
+  return data;
+});
+
+export const signUpUser = createAsyncThunk('user/signUpUser', async (user) => {
+  const response = await axios.post(`${usersUrl}/sign_up`, {
+    body: JSON.stringify(user),
+  });
+  const { data } = response;
   return data;
 });
 

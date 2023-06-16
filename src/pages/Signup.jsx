@@ -1,34 +1,33 @@
+/* eslint-disable implicit-arrow-linebreak */
+/* eslint-disable object-curly-newline */
+/* eslint-disable react/jsx-props-no-spreading */
 import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { Circles } from 'react-loader-spinner';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { signUpUser } from '../redux/slices/userSlice';
 
 const SignUpComponent = () => {
-  const [Name] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [passwordError, setPasswordError] = useState('');
+  const dispatch = useDispatch();
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+    reset,
+  } = useForm();
+  const [loading, setLoading] = useState(false);
 
-  const handleSignUp = (e) => {
-    e.preventDefault();
-
-    if (password !== confirmPassword) {
-      setPasswordError('Passwords do not match');
-      return;
-    }
-
-    // Here, you can perform sign-up logic, such as making an API request to register the user
-    console.log('Signing up:', {
-      Name,
-      email,
-      password,
-    });
-    // Reset form fields
-    Name('');
-    setEmail('');
-    setPassword('');
-    setConfirmPassword('');
-    setPasswordError('');
+  const handleSignUp = ({ name, email, password, confirmPassword }) => {
+    setLoading(true);
+    console.log(name, email, password, confirmPassword);
+    dispatch(signUpUser({ name, email, password, confirmPassword }));
+    setLoading(false);
+    reset();
   };
+
+  const password = watch('password');
 
   return (
     <div className="py-6 space-y-8 bg-lime-50 h-screen overflow-auto">
@@ -36,58 +35,107 @@ const SignUpComponent = () => {
         Sign Up
       </h2>
       <form
-        onSubmit={handleSignUp}
+        onSubmit={handleSubmit(handleSignUp)}
         className="w-full grid grid-cols-1 gap-1 mb-20 px-4 md:px-10 text-lime-800 lg:px-20 xl:px-40 md:gap-x-2"
       >
-        <label htmlFor="Name">
-          Name:
-          <input
-            type="text"
-            id="Name"
-            value={Name}
-            onChange={(e) => Name(e.target.value)}
-            required
-          />
-        </label>
-
-        <label htmlFor="email">
-          Email:
-          <input
-            type="email"
-            id="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </label>
-        <label htmlFor="password">
-          Password:
-          <input
-            type="password"
-            id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </label>
-        <label htmlFor="confirmPassword">
-          Confirm Password:
-          <input
-            type="password"
-            id="confirmPassword"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            required
-          />
-        </label>
-        {passwordError && <p>{passwordError}</p>}
-        <button
-          type="submit"
-          className="bg-lime-700
-            w-full flex gap-2 items-center transition-all duration-300 text-white rounded-md justify-center text-2xl px-8 py-2"
-        >
-          Sign Up
-        </button>
+        <div>
+          <label htmlFor="fullName">
+            Full Name:
+            <input
+              type="text"
+              id="fullName"
+              {...register('fullName', {
+                required: 'Please enter your full name',
+                pattern: {
+                  value: /^[A-Za-z]+\s[A-Za-z]+$/,
+                  message:
+                    'Please enter a valid full name (first name and last name)',
+                },
+              })}
+            />
+          </label>
+          {errors.fullName && (
+            <span className="text-red-500">{errors.fullName.message}</span>
+          )}
+        </div>
+        <div>
+          <label htmlFor="email">
+            Email:
+            <input
+              type="email"
+              id="email"
+              {...register('email', {
+                required: 'Please enter your email',
+                pattern: {
+                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                  message: 'Please enter a valid email address',
+                },
+              })}
+            />
+          </label>
+          {errors.email && (
+            <span className="text-red-500">{errors.email.message}</span>
+          )}
+        </div>
+        <div>
+          <label htmlFor="password">
+            Password:
+            <input
+              type="password"
+              id="password"
+              {...register('password', {
+                required: 'Please enter your password',
+                minLength: {
+                  value: 6,
+                  message: 'Password must be at least 6 characters long',
+                },
+              })}
+            />
+          </label>
+          {errors.password && (
+            <span className="text-red-500">{errors.password.message}</span>
+          )}
+        </div>
+        <div>
+          <label htmlFor="confirmPassword">
+            Confirm Password:
+            <input
+              type="password"
+              id="confirmPassword"
+              {...register('confirmPassword', {
+                required: 'Please confirm your password',
+                validate: (value) =>
+                  value === password || 'Passwords do not match',
+              })}
+            />
+          </label>
+          {errors.confirmPassword && (
+            <span className="text-red-500">
+              {errors.confirmPassword.message}
+            </span>
+          )}
+        </div>
+        {loading ? (
+          <div className="flex justify-center w-full">
+            <Circles
+              height="50"
+              width="50"
+              color="rgba(101, 163, 13, 1)"
+              ariaLabel="circles-loading"
+              wrapperStyle={{}}
+              wrapperClass=""
+              visible={loading}
+            />
+          </div>
+        ) : (
+          <button
+            type="submit"
+            className="bg-lime-700
+          w-full flex gap-2 items-center transition-all duration-300 text-white rounded-md justify-center text-2xl px-8 py-2"
+          >
+            Sign Up
+          </button>
+        )}
       </form>
 
       <p className="flex justify-center">
