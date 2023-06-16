@@ -18,7 +18,9 @@ const SignUpComponent = () => {
 
     // Here, you can perform sign-up logic, such as making an API request to register the user
     console.log('Signing up:', {
-      Name, email, password,
+      Name,
+      email,
+      password,
     });
     // Reset form fields
     Name('');
@@ -30,8 +32,13 @@ const SignUpComponent = () => {
 
   return (
     <div className="py-6 space-y-8 bg-lime-50 h-screen overflow-auto">
-      <h2 className="flex justify-center text-2xl md:text-3xl text-lime-800 font-bold">Sign Up</h2>
-      <form onSubmit={handleSignUp} className="w-full grid grid-cols-1 gap-1 mb-20 px-4 md:px-10 text-lime-800 lg:px-20 xl:px-40 md:gap-x-2">
+      <h2 className="flex justify-center text-2xl md:text-3xl text-lime-800 font-bold">
+        Sign Up
+      </h2>
+      <form
+        onSubmit={handleSignUp}
+        className="w-full grid grid-cols-1 gap-1 mb-20 px-4 md:px-10 text-lime-800 lg:px-20 xl:px-40 md:gap-x-2"
+      >
         <label htmlFor="Name">
           Name:
           <input
@@ -85,9 +92,10 @@ const SignUpComponent = () => {
 
       <p className="flex justify-center">
         Already have an account?&nbsp;
-        <Link to="/login" className="text-blue-800 font-italic">Log in</Link>
+        <Link to="/login" className="text-blue-800 font-italic">
+          Log in
+        </Link>
       </p>
-
     </div>
   );
 };
