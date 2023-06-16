@@ -35,7 +35,7 @@ function App() {
         <ToastContainer position="top-center" />
         <Navbar />
       </section>
-      <section className=" md:col-span-5  overflow-auto bg-lime-50 lg:col-span-9">
+      <section className=" md:col-span-5 py-20 md:py-10 lg:py-0 pt-4 overflow-auto bg-lime-50 lg:col-span-9">
         <Outlet />
       </section>
     </div>

@@ -17,7 +17,11 @@ const Reservations = () => {
 
   useEffect(() => {
     dispatch(fetchReservations(user?.id));
-  }, [dispatch]);
+  }, [dispatch, user?.id]);
+
+  useEffect(() => {
+    setNewReservations(reservations);
+  }, []);
 
   const handleDelete = async (id) => {
     setSelectedId(id);
@@ -30,7 +34,7 @@ const Reservations = () => {
   };
 
   return (
-    <div className="h-screen flex flex-col items-center p-4 md:p-12 lg:p-20 pt-8 gap-8 pb-32">
+    <div className="h-screen flex flex-col items-center p-4 md:p-12 lg:p-20 pt-12 gap-8 pb-32">
       <h1 className="text-3xl font-bold text-lime-800">Reservation Details</h1>
       <ul className="w-full text-lime-900 flex flex-col gap-8 pb-20">
         {newReservations?.map((reservation) => (

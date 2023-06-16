@@ -217,7 +217,7 @@ const AddCab = () => {
         <div className="md:col-span-2 flex justify-center">
           <button
             type="submit"
-            className="bg-lime-500
+            className="bg-lime-700
             w-full lg:w-[300px] flex gap-2 items-center transition-all duration-300 text-white rounded-md justify-center text-2xl px-8 py-2"
           >
             {loading ? (

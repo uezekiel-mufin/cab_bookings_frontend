@@ -3,9 +3,12 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
+const url = process.env.REACT_APP_API_URL;
+
 const initialState = {
   cabs: [],
   displayedCabs: [],
+  userCabs: [],
   selectedCab: {},
   loading: false,
   error: '',
@@ -18,20 +21,20 @@ const initialState = {
 
 // Function to fetch all cabs
 export const fetchCabs = createAsyncThunk('fetchCabs', async () => {
-  const { data } = await axios.get('http://127.0.0.1:3000/api/v1/cabs');
+  const { data } = await axios.get(`${url}/cabs`);
   return data;
 });
 
 // Function to fetch a single cab
 export const fetchCab = createAsyncThunk('fetchCab', async (id) => {
-  const { data } = await axios.get(`http://127.0.0.1:3000/api/v1/cabs/${id}`);
+  const { data } = await axios.get(`${url}/cabs/${id}`);
   return data;
 });
 
 // Function to create a cab
 export const createCab = createAsyncThunk('createCab', async (cab) => {
   try {
-    const response = await axios.post('http://127.0.0.1:3000/api/v1/cabs', {
+    const response = await axios.post(`${url}/cabs`, {
       cab,
     });
     const { data } = response;
@@ -43,6 +46,11 @@ export const createCab = createAsyncThunk('createCab', async (cab) => {
     toast.error('There was an error creating the cab');
   }
   return null;
+});
+
+export const deleteCab = createAsyncThunk('deleteCab', async (id) => {
+  const response = await axios.delete(`${url}/cabs/${id}`);
+  return { id, status: response.status };
 });
 
 const fetchCabSlice = createSlice({
@@ -71,6 +79,10 @@ const fetchCabSlice = createSlice({
         );
       }
     },
+    setUserCabs: (state, action) => {
+      const id = action.payload;
+      state.userCabs = state.cabs.filter((cab) => cab.user_id === id);
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchCabs.pending, (state) => {
@@ -97,8 +109,19 @@ const fetchCabSlice = createSlice({
       state.error = action.error.message;
       state.loading = false;
     });
+    builder.addCase(deleteCab.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(deleteCab.fulfilled, (state, action) => {
+      const { id } = action.payload;
+      state.cabs = state.cabs.filter((cab) => cab.id !== id);
+    });
+    builder.addCase(deleteCab.rejected, (state, action) => {
+      state.error = action.error.message;
+      state.loading = false;
+    });
   },
 });
 
 export default fetchCabSlice.reducer;
-export const { nextCab, prevCab } = fetchCabSlice.actions;
+export const { nextCab, prevCab, setUserCabs } = fetchCabSlice.actions;
