@@ -38,6 +38,7 @@ export const createCab = createAsyncThunk('createCab', async (cab) => {
     const response = await axios.post(`${url}/cabs`, {
       cab,
     });
+    console.log(response);
     const { data } = response;
     if (response.status === 201) {
       toast.success('Cab created successfully');
@@ -90,8 +91,9 @@ const fetchCabSlice = createSlice({
       state.createLoading = true;
     });
     builder.addCase(createCab.fulfilled, (state, action) => {
-      state.cabs.push(action.payload);
       state.createLoading = false;
+      console.log(action.payload);
+      state.cabs = [...state.cabs, action.payload];
     });
     builder.addCase(createCab.rejected, (state, action) => {
       state.error = action.error.message;
