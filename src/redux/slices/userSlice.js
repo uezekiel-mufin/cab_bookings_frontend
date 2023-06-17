@@ -12,16 +12,26 @@ const initialState = {
 
 export const loginUser = createAsyncThunk('user/loginUser', async (user) => {
   const response = await axios.post(`${usersUrl}/sign_in`, {
-    body: JSON.stringify(user),
+    user,
   });
+  console.log(response);
   const { data } = response;
   return data;
 });
 
 export const signUpUser = createAsyncThunk('user/signUpUser', async (user) => {
-  const response = await axios.post(`${usersUrl}`, {
-    user,
-  });
+  console.log(user);
+  const response = await axios.post(
+    `${usersUrl}`,
+    {
+      user,
+    },
+    {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    },
+  );
   const { data } = response;
   return data;
 });
@@ -30,9 +40,6 @@ export const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    login: (state, action) => {
-      state.user = action.payload;
-    },
     signOut: (state) => {
       Cookies.remove('user');
       state.user = null;
@@ -42,10 +49,15 @@ export const userSlice = createSlice({
     builder.addCase(signUpUser.fulfilled, (state, action) => {
       state.loading = false;
       state.user = action.payload.user;
-      Cookies.set('user', JSON.stringify(action.payload.user), { expires: 1 });
+      Cookies.set('user', JSON.stringify(action.payload.user), { expires: 2 });
+    });
+    builder.addCase(loginUser.fulfilled, (state, action) => {
+      state.loading = false;
+      state.user = action.payload.user;
+      Cookies.set('user', JSON.stringify(action.payload.user), { expires: 2 });
     });
   },
 });
 
-export const { login, signOut } = userSlice.actions;
+export const { signOut } = userSlice.actions;
 export default userSlice.reducer;

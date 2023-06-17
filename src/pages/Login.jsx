@@ -2,16 +2,28 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
+import { loginUser } from '../redux/slices/userSlice';
 
 const Login = () => {
+  const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
-  const handleLoginSubmit = (event) => {
-    event.preventDefault();
+  const handleLoginSubmit = async ({ email, password }) => {
+    const user = {
+      email,
+      password,
+    };
+    console.log(user);
+    const result = await dispatch(loginUser(user));
+    if (result?.payload?.message === 'You are logged in') {
+      toast.success('Login successful');
+    }
   };
 
   return (
@@ -30,11 +42,16 @@ const Login = () => {
             name="email"
             placeholder="Email"
             {...register('email', {
-              required: true,
-              message: 'Please enter a valid Email',
+              required: 'Please enter your email',
+              pattern: {
+                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                message: 'Please enter a valid email address',
+              },
             })}
           />
-          {errors.email && <span>{errors.email.message}</span>}
+          {errors.email && (
+            <span className="text-red-500">{errors.email.message}</span>
+          )}
         </div>
         <div>
           <input
@@ -43,8 +60,7 @@ const Login = () => {
             name="password"
             placeholder="Password"
             {...register('password', {
-              required: true,
-              message: 'Please enter the Password',
+              required: 'Please enter the Password',
             })}
           />
         </div>
