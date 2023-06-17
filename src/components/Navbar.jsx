@@ -82,7 +82,7 @@ const Navbar = () => {
               </Link>
             ))}
           </ul>
-          <div className="flex px-4 justify-start">
+          <div className="flex px-4  mt-2 justify-start">
             {user && (
               <button
                 onClick={() => dispatch(signOut())}
