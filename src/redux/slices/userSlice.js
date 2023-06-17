@@ -2,27 +2,13 @@ import Cookies from 'js-cookie';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const mockUser = {
-  id: 1,
-  name: 'John Doe',
-};
-
-const url = process.env.REACT_APP_API_URL;
-const usersUrl = process.env.REACT_APP_USERS_URL;
+const usersUrl = process.env.REACT_APP_API_USERS;
 
 const initialState = {
-  user: Cookies.get('user') ? JSON.parse(Cookies.get('user')) : mockUser,
+  user: Cookies.get('user') ? JSON.parse(Cookies.get('user')) : null,
   loading: false,
   error: '',
 };
-
-export const fetchUser = createAsyncThunk('user/fetchUser', async (user) => {
-  const response = await axios.post(`${url}/users/sign_in`, {
-    body: JSON.stringify(user),
-  });
-  const data = await response.json();
-  return data;
-});
 
 export const loginUser = createAsyncThunk('user/loginUser', async (user) => {
   const response = await axios.post(`${usersUrl}/sign_in`, {
@@ -33,8 +19,8 @@ export const loginUser = createAsyncThunk('user/loginUser', async (user) => {
 });
 
 export const signUpUser = createAsyncThunk('user/signUpUser', async (user) => {
-  const response = await axios.post(`${usersUrl}/sign_up`, {
-    body: JSON.stringify(user),
+  const response = await axios.post(`${usersUrl}`, {
+    user,
   });
   const { data } = response;
   return data;
@@ -49,13 +35,10 @@ export const userSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchUser.fulfilled, (state, action) => {
+    builder.addCase(signUpUser.fulfilled, (state, action) => {
       state.loading = false;
-      state.user = action.payload;
-    });
-    builder.addCase(fetchUser.rejected, (state) => {
-      state.loading = false;
-      state.error = 'This User could not be authenticated';
+      state.user = action.payload.user;
+      Cookies.set('user', JSON.stringify(action.payload.user), { expires: 1 });
     });
   },
 });

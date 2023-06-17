@@ -4,12 +4,14 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Circles } from 'react-loader-spinner';
+import { toast } from 'react-toastify';
 import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { signUpUser } from '../redux/slices/userSlice';
 
 const SignUpComponent = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -19,12 +21,22 @@ const SignUpComponent = () => {
   } = useForm();
   const [loading, setLoading] = useState(false);
 
-  const handleSignUp = ({ name, email, password, confirmPassword }) => {
+  const handleSignUp = async ({ name, email, password, confirmPassword }) => {
     setLoading(true);
-    console.log(name, email, password, confirmPassword);
-    dispatch(signUpUser({ name, email, password, confirmPassword }));
-    setLoading(false);
-    reset();
+    const result = await dispatch(
+      signUpUser({
+        name,
+        email,
+        password,
+        password_confirmation: confirmPassword,
+      }),
+    );
+    if (result.payload.message) {
+      setLoading(false);
+      reset();
+      toast.success('Sign up successful.');
+      navigate('/cabs');
+    }
   };
 
   const password = watch('password');
@@ -44,7 +56,7 @@ const SignUpComponent = () => {
             <input
               type="text"
               id="fullName"
-              {...register('fullName', {
+              {...register('name', {
                 required: 'Please enter your full name',
                 pattern: {
                   value: /^[A-Za-z]+\s[A-Za-z]+$/,
