@@ -12,12 +12,19 @@ const Reservations = () => {
   const [selectedId, setSelectedId] = useState(0);
   const dispatch = useDispatch();
   const { reservations } = useSelector((state) => state.reservation);
+  const { loading: reservationLoading } = useSelector(
+    (state) => state.reservation,
+  );
   const [newReservations, setNewReservations] = useState(reservations);
   const { user } = useSelector((state) => state.user);
 
   useEffect(() => {
     dispatch(fetchReservations(user?.id));
-  }, [dispatch]);
+  }, [dispatch, user?.id]);
+
+  useEffect(() => {
+    setNewReservations(reservations);
+  }, []);
 
   const handleDelete = async (id) => {
     setSelectedId(id);
@@ -29,9 +36,32 @@ const Reservations = () => {
     setLoading(false);
   };
 
+  if (reservationLoading) {
+    return (
+      <div className="h-screen flex justify-center items-center">
+        <Circles
+          height="80"
+          width="80"
+          color="rgba(101, 163, 13, 1)"
+          ariaLabel="circles-loading"
+          wrapperStyle={{}}
+          wrapperClass=""
+          visible={reservationLoading}
+        />
+      </div>
+    );
+  }
   return (
-    <div className="h-screen flex flex-col items-center p-4 md:p-12 lg:p-20 pt-8 gap-8 pb-32">
+    <div className="h-screen flex flex-col items-center p-4 md:p-12 lg:p-20 pt-12 gap-8 pb-32">
       <h1 className="text-3xl font-bold text-lime-800">Reservation Details</h1>
+      <hr className="border-dotted w-[300px]  font-bold text-2xl border-[3px]" />
+      {newReservations.length === 0 && (
+        <section className="flex justify-center pt-20 text-lime-800 items-center">
+          <h1 className="text-2xl text-center font-bold tracking-widest">
+            No cabs available...
+          </h1>
+        </section>
+      )}
       <ul className="w-full text-lime-900 flex flex-col gap-8 pb-20">
         {newReservations?.map((reservation) => (
           <li

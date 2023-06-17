@@ -6,6 +6,9 @@ const mockUser = {
   id: 1,
   name: 'John Doe',
 };
+
+const url = process.env.REACT_APP_API_URL;
+
 const initialState = {
   user: Cookies.get('user') ? JSON.parse(Cookies.get('user')) : mockUser,
   loading: false,
@@ -13,7 +16,7 @@ const initialState = {
 };
 
 export const fetchUser = createAsyncThunk('user/fetchUser', async (user) => {
-  const response = await axios.post('http://localhost:3000/api/v1/login', {
+  const response = await axios.post(`${url}/users/sign_in`, {
     body: JSON.stringify(user),
   });
   const data = await response.json();

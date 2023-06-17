@@ -7,17 +7,17 @@ const initialState = {
   loading: false,
 };
 
+const url = process.env.REACT_APP_API_URL;
+
 export const fetchReservations = createAsyncThunk(
   'fetchReservations',
   async (user) => {
-    const { data } = await axios.get(
-      'http://localhost:3000/api/v1/reservations',
-      {
-        params: {
-          user,
-        },
+    const response = await axios.get(`${url}/reservations`, {
+      params: {
+        user,
       },
-    );
+    });
+    const { data } = response;
     return data;
   },
 );
@@ -25,12 +25,9 @@ export const fetchReservations = createAsyncThunk(
 export const createReservation = createAsyncThunk(
   'createReservation',
   async (obj) => {
-    const response = await axios.post(
-      'http://localhost:3000/api/v1/reservations',
-      {
-        reservation: obj,
-      },
-    );
+    const response = await axios.post(`${url}/reservations`, {
+      reservation: obj,
+    });
 
     return response.statusText;
   },
@@ -39,9 +36,7 @@ export const createReservation = createAsyncThunk(
 export const deleteReservation = createAsyncThunk(
   'deleteReservation',
   async (id) => {
-    const response = await axios.delete(
-      `http://localhost:3000/api/v1/reservations/${id}`,
-    );
+    const response = await axios.delete(`${url}/reservations/${id}`);
     if (response.statusText === 'ok') {
       toast.success('Your reservation has been deleted');
     }
