@@ -42,8 +42,8 @@ const SignUpComponent = () => {
   const password = watch('password');
 
   return (
-    <div className="py-6 space-y-8 bg-lime-50 h-screen overflow-auto">
-      <h2 className="flex justify-center text-2xl md:text-3xl text-lime-800 font-bold">
+    <div className="py-6 pt-20 space-y-8 bg-lime-50 h-screen overflow-auto">
+      <h2 className="flex justify-center text-3xl md:text-4xl text-lime-800 font-bold">
         Sign Up
       </h2>
       <form
