@@ -3,8 +3,6 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 
 const Login = () => {
-  console.log('this is the login page');
-
   const {
     register,
     handleSubmit,
@@ -57,6 +55,12 @@ const Login = () => {
           Login
         </button>
       </form>
+      <p className="flex justify-center">
+        Don't have an account?&nbsp;
+        <Link to="/signup" className="text-blue-800 font-italic">
+          Sign Up
+        </Link>
+      </p>
     </div>
   );
 };
