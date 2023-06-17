@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 
 const Login = () => {
@@ -55,6 +56,12 @@ const Login = () => {
           Login
         </button>
       </form>
+      <p className="flex justify-center">
+        Don&apos;t have an account?&nbsp;
+        <Link to="/signup" className="text-blue-800 font-italic">
+          Sign Up
+        </Link>
+      </p>
     </div>
   );
 };
