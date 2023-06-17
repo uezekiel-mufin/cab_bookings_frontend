@@ -24,7 +24,7 @@ const Reservations = () => {
 
   useEffect(() => {
     setNewReservations(reservations);
-  }, []);
+  }, [reservations]);
 
   const handleDelete = async (id) => {
     setSelectedId(id);

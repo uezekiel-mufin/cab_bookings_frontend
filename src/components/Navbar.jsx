@@ -5,39 +5,42 @@ import { FaMediumM, FaTwitter, FaInstagram, FaFacebook } from 'react-icons/fa';
 import { MdOutlineClose } from 'react-icons/md';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleMenu } from '../redux/slices/menuSlice';
+import { signOut } from '../redux/slices/userSlice';
+
+const navLinks = [
+  {
+    id: 1,
+    name: 'Cabs',
+    path: '/cabs',
+  },
+  {
+    id: 2,
+    name: 'Reserve',
+    path: '/reservations/new',
+  },
+  {
+    id: 3,
+    name: 'My Reservations',
+    path: '/reservations',
+  },
+  {
+    id: 4,
+    name: 'Add Cab',
+    path: '/cabs/new',
+  },
+  {
+    id: 5,
+    name: 'Delete Cab',
+    path: '/delete-cab',
+  },
+];
 
 const Navbar = () => {
   const [activeLink, setActiveLink] = useState(1);
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.user);
   const location = useLocation();
-  const navLinks = [
-    {
-      id: 1,
-      name: 'Cabs',
-      path: '/cabs',
-    },
-    {
-      id: 2,
-      name: 'Reserve',
-      path: '/reservations/new',
-    },
-    {
-      id: 3,
-      name: 'My Reservations',
-      path: '/reservations',
-    },
-    {
-      id: 4,
-      name: 'Add Cab',
-      path: '/cabs/new',
-    },
-    {
-      id: 5,
-      name: 'Delete Cab',
-      path: '/delete-cab',
-    },
-  ];
+
   const date = new Date().getFullYear();
 
   const handleLinkClick = (id) => {
@@ -46,8 +49,8 @@ const Navbar = () => {
   };
 
   useEffect(() => {
-    const link = navLinks.find((item) => item.path === location.pathname);
-    setActiveLink(link.id);
+    const link = navLinks.find((item) => location.pathname.includes(item.path));
+    setActiveLink(link?.id);
   }, [location.pathname]);
 
   return (
@@ -79,9 +82,13 @@ const Navbar = () => {
               </Link>
             ))}
           </ul>
-          <div className="flex px-4 justify-start">
+          <div className="flex px-4  mt-2 justify-start">
             {user && (
-              <button type="button" className="text-lime-800 font-bold text-lg">
+              <button
+                onClick={() => dispatch(signOut())}
+                type="button"
+                className="text-lime-800 font-bold text-lg"
+              >
                 Logout
               </button>
             )}

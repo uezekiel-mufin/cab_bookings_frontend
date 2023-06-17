@@ -11,14 +11,20 @@ const DeleteCab = () => {
   const [newCabs, setNewCabs] = useState([]);
   const [loading, setLoading] = useState(false);
   const [selectedId, setSelectedId] = useState(0);
+  const { cabs } = useSelector((state) => state.fetchCab);
+
+  console.log(cabs);
+  console.log(user);
 
   useEffect(() => {
     dispatch(setUserCabs(user?.id));
-  }, [user?.id]);
+  }, [dispatch, user?.id]);
 
   useEffect(() => {
     setNewCabs(userCabs);
   }, [userCabs]);
+
+  console.log(userCabs);
 
   // Function to delete a cab using its id
   const handleDelete = async (id) => {
@@ -36,10 +42,18 @@ const DeleteCab = () => {
   };
 
   return (
-    <div className="h-screen bg-lime-50 space-y-8 pt-10 text-lime-800 md:px-10 lg:px-20">
+    <div className="h-screen flex flex-col items-center mt-8 bg-lime-50 space-y-4 pt-10 text-lime-800 md:px-10 lg:px-20">
       <h1 className="text-3xl text-center font-bold tracking-widest">
         Delete Cab
       </h1>
+      <hr className="border-dotted w-[300px]  font-bold text-2xl border-[3px]" />
+      {newCabs.length === 0 && (
+        <section className="flex justify-center pt-20 text-lime-800 items-center">
+          <h1 className="text-2xl text-center font-bold tracking-widest">
+            No cabs available...
+          </h1>
+        </section>
+      )}
       <ul className="flex flex-col gap-8 w-full p-6 items-center">
         {newCabs.map((cab) => (
           <li

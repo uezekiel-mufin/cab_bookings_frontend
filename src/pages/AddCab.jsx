@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { Circles } from 'react-loader-spinner';
 import { useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import ImageUploader from '../components/ImageUploader';
 import { createCab } from '../redux/slices/cabSlice';
@@ -12,6 +12,7 @@ const AddCab = () => {
   const [imageUrl, setImageUrl] = useState('');
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.user);
   const {
     register,
     handleSubmit,
@@ -28,7 +29,7 @@ const AddCab = () => {
       }
       setLoading(true);
       const result = await dispatch(
-        createCab({ ...data, image_url: imageUrl, user_id: 1 }),
+        createCab({ ...data, image_url: imageUrl, user_id: user?.id }),
       );
       if (result.payload.id) {
         setLoading(false);

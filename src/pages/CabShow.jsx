@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { BiLeftArrow } from 'react-icons/bi';
 import { BsCarFront } from 'react-icons/bs';
 import { MdOutlineKeyboardArrowRight } from 'react-icons/md';
+import { Circles } from 'react-loader-spinner';
 import MultiColorProgressBar from '../components/CircularBar';
 import { fetchCab } from '../redux/slices/cabSlice';
 
@@ -11,13 +12,28 @@ const CabShow = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const selectedCab = useSelector((state) => state.fetchCab.selectedCab);
-  const loading = useSelector((state) => state.fetchCab.loading);
+  const { cabsLoading } = useSelector((state) => state.fetchCab);
 
   useEffect(() => {
     dispatch(fetchCab(id));
   }, [dispatch, id]);
 
-  if (loading) return <div>Loading...</div>;
+  if (cabsLoading) {
+    return (
+      <div className="h-screen flex justify-center items-center">
+        <Circles
+          height="80"
+          width="80"
+          color="rgba(101, 163, 13, 1)"
+          ariaLabel="circles-loading"
+          wrapperStyle={{}}
+          wrapperClass=""
+          visible={cabsLoading}
+        />
+      </div>
+    );
+  }
+
   return (
     <main className="px-4 md:p-10 md:px-4 xl:pl-16 py-8 overflow-auto relative h-screen text-[#645858] ">
       <button

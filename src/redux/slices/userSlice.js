@@ -2,24 +2,37 @@ import Cookies from 'js-cookie';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const mockUser = {
-  id: 1,
-  name: 'John Doe',
-};
-
-const url = process.env.REACT_APP_API_URL;
+const usersUrl = process.env.REACT_APP_API_USERS;
 
 const initialState = {
-  user: Cookies.get('user') ? JSON.parse(Cookies.get('user')) : mockUser,
+  user: Cookies.get('user') ? JSON.parse(Cookies.get('user')) : null,
   loading: false,
   error: '',
 };
 
-export const fetchUser = createAsyncThunk('user/fetchUser', async (user) => {
-  const response = await axios.post(`${url}/users/sign_in`, {
-    body: JSON.stringify(user),
+export const loginUser = createAsyncThunk('user/loginUser', async (user) => {
+  const response = await axios.post(`${usersUrl}/sign_in`, {
+    user,
   });
-  const data = await response.json();
+  console.log(response);
+  const { data } = response;
+  return data;
+});
+
+export const signUpUser = createAsyncThunk('user/signUpUser', async (user) => {
+  console.log(user);
+  const response = await axios.post(
+    `${usersUrl}`,
+    {
+      user,
+    },
+    {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    },
+  );
+  const { data } = response;
   return data;
 });
 
@@ -27,21 +40,24 @@ export const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    login: (state, action) => {
-      state.user = action.payload;
+    signOut: (state) => {
+      Cookies.remove('user');
+      state.user = null;
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchUser.fulfilled, (state, action) => {
+    builder.addCase(signUpUser.fulfilled, (state, action) => {
       state.loading = false;
-      state.user = action.payload;
+      state.user = action.payload.user;
+      Cookies.set('user', JSON.stringify(action.payload.user), { expires: 2 });
     });
-    builder.addCase(fetchUser.rejected, (state) => {
+    builder.addCase(loginUser.fulfilled, (state, action) => {
       state.loading = false;
-      state.error = 'This User could not be authenticated';
+      state.user = action.payload.user;
+      Cookies.set('user', JSON.stringify(action.payload.user), { expires: 2 });
     });
   },
 });
 
-export const { login } = userSlice.actions;
+export const { signOut } = userSlice.actions;
 export default userSlice.reducer;

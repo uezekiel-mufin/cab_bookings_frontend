@@ -55,7 +55,7 @@ const CabIndex = () => {
       <section className="mb-16 lg:mb-0">
         <ul className="grid pb-12 grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 relative gap-8 gap-y-16  items-center transition-all duration-300 ease-linear justify-center p-12 px-4 md:px-12 lg:px-20 xl:px-32">
           {cabsLists.length > 0 && (
-            <section>
+            <>
               <button
                 className={`absolute top-full my-8 lg:top-1/2 left-0 transform -translate-y-1/2 ${
                   currentPage > 1 ? 'bg-lime-400' : 'bg-slate-200'
@@ -78,7 +78,7 @@ const CabIndex = () => {
               >
                 <BiRightArrow className="text-white text-xl" />
               </button>
-            </section>
+            </>
           )}
           {cabsLists.map((cab) => (
             <motion.div key={cab.id} className="shadow-xl p-4 lg:shadow-none">

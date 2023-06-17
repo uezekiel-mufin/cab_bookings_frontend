@@ -1,22 +1,42 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
+import { Circles } from 'react-loader-spinner';
+import { toast } from 'react-toastify';
+import { loginUser } from '../redux/slices/userSlice';
 
 const Login = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const [loading, setLoading] = useState(false);
 
-  const handleLoginSubmit = (event) => {
-    event.preventDefault();
+  const handleLoginSubmit = async ({ email, password }) => {
+    setLoading(true);
+    const user = {
+      email,
+      password,
+    };
+    const result = await dispatch(loginUser(user));
+    if (result?.payload?.message === 'You are logged in') {
+      toast.success('Login successful');
+      navigate('/cabs');
+      setLoading(false);
+    } else {
+      toast.error('Login failed');
+      setLoading(false);
+    }
   };
 
   return (
-    <div className="py-16 space-y-8 bg-lime-50 h-screen overflow-auto">
-      <h2 className="flex justify-center text-3xl md:text-3xl text-lime-800 font-bold">
+    <div className="pt-40 space-y-8 bg-lime-50 h-screen overflow-auto">
+      <h2 className="flex justify-center text-3xl md:text-4xl tracking-widest text-lime-800 font-bold">
         Login
       </h2>
       <form
@@ -30,11 +50,16 @@ const Login = () => {
             name="email"
             placeholder="Email"
             {...register('email', {
-              required: true,
-              message: 'Please enter a valid Email',
+              required: 'Please enter your email',
+              pattern: {
+                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                message: 'Please enter a valid email address',
+              },
             })}
           />
-          {errors.email && <span>{errors.email.message}</span>}
+          {errors.email && (
+            <span className="text-red-500">{errors.email.message}</span>
+          )}
         </div>
         <div>
           <input
@@ -43,18 +68,31 @@ const Login = () => {
             name="password"
             placeholder="Password"
             {...register('password', {
-              required: true,
-              message: 'Please enter the Password',
+              required: 'Please enter the Password',
             })}
           />
         </div>
-        <button
-          type="submit"
-          className="bg-lime-700
+        {loading ? (
+          <div className="flex justify-center w-full">
+            <Circles
+              height="50"
+              width="50"
+              color="rgba(101, 163, 13, 1)"
+              ariaLabel="circles-loading"
+              wrapperStyle={{}}
+              wrapperClass=""
+              visible={loading}
+            />
+          </div>
+        ) : (
+          <button
+            type="submit"
+            className="bg-lime-700
             w-full flex gap-2 items-center transition-all duration-300 text-white rounded-md justify-center text-2xl px-8 py-2"
-        >
-          Login
-        </button>
+          >
+            Login
+          </button>
+        )}
       </form>
       <p className="flex justify-center">
         Don&apos;t have an account?&nbsp;
