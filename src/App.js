@@ -23,7 +23,7 @@ function App() {
 
   useEffect(() => {
     if (!user) {
-      navigate('/homepage');
+      navigate('/welcome');
     } else {
       navigate('/cabs');
     }

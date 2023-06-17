@@ -34,7 +34,7 @@ const SignUpComponent = () => {
     if (result.payload.message) {
       setLoading(false);
       reset();
-      toast.success('Sign up successful.');
+      toast.success('Welcome to Carbooky.');
       navigate('/cabs');
     }
   };

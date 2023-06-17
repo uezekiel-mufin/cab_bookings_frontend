@@ -1,28 +1,36 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
+import { Circles } from 'react-loader-spinner';
 import { toast } from 'react-toastify';
 import { loginUser } from '../redux/slices/userSlice';
 
 const Login = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const [loading, setLoading] = useState(false);
 
   const handleLoginSubmit = async ({ email, password }) => {
+    setLoading(true);
     const user = {
       email,
       password,
     };
-    console.log(user);
     const result = await dispatch(loginUser(user));
     if (result?.payload?.message === 'You are logged in') {
       toast.success('Login successful');
+      navigate('/cabs');
+      setLoading(false);
+    } else {
+      toast.error('Login failed');
+      setLoading(false);
     }
   };
 
@@ -64,13 +72,27 @@ const Login = () => {
             })}
           />
         </div>
-        <button
-          type="submit"
-          className="bg-lime-700
+        {loading ? (
+          <div className="flex justify-center w-full">
+            <Circles
+              height="50"
+              width="50"
+              color="rgba(101, 163, 13, 1)"
+              ariaLabel="circles-loading"
+              wrapperStyle={{}}
+              wrapperClass=""
+              visible={loading}
+            />
+          </div>
+        ) : (
+          <button
+            type="submit"
+            className="bg-lime-700
             w-full flex gap-2 items-center transition-all duration-300 text-white rounded-md justify-center text-2xl px-8 py-2"
-        >
-          Login
-        </button>
+          >
+            Login
+          </button>
+        )}
       </form>
       <p className="flex justify-center">
         Don&apos;t have an account?&nbsp;
