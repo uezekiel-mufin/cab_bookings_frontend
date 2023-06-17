@@ -15,8 +15,8 @@ const Login = () => {
   };
 
   return (
-    <div className="py-16 space-y-8 bg-lime-50 h-screen overflow-auto">
-      <h2 className="flex justify-center text-3xl md:text-3xl text-lime-800 font-bold">
+    <div className="pt-40 space-y-8 bg-lime-50 h-screen overflow-auto">
+      <h2 className="flex justify-center text-3xl md:text-4xl tracking-widest text-lime-800 font-bold">
         Login
       </h2>
       <form
