@@ -14,6 +14,7 @@ import CabShow from './pages/CabShow';
 import DeleteCab from './pages/DeleteCab';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
+import Homepage from './pages/Homepage';
 
 const router = createBrowserRouter([
   {
@@ -46,6 +47,10 @@ const router = createBrowserRouter([
         element: <DeleteCab />,
       },
     ],
+  },
+  {
+    path: '/homepage',
+    element: <Homepage />,
   },
   {
     path: '/login',
