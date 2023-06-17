@@ -33,6 +33,10 @@ export const userSlice = createSlice({
     login: (state, action) => {
       state.user = action.payload;
     },
+    signOut: (state) => {
+      Cookies.remove('user');
+      state.user = null;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(signUpUser.fulfilled, (state, action) => {
@@ -43,5 +47,5 @@ export const userSlice = createSlice({
   },
 });
 
-export const { login } = userSlice.actions;
+export const { login, signOut } = userSlice.actions;
 export default userSlice.reducer;

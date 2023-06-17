@@ -5,6 +5,7 @@ import { FaMediumM, FaTwitter, FaInstagram, FaFacebook } from 'react-icons/fa';
 import { MdOutlineClose } from 'react-icons/md';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleMenu } from '../redux/slices/menuSlice';
+import { signOut } from '../redux/slices/userSlice';
 
 const navLinks = [
   {
@@ -50,7 +51,7 @@ const Navbar = () => {
   useEffect(() => {
     const link = navLinks.find((item) => location.pathname.includes(item.path));
     setActiveLink(link?.id);
-  }, [location.pathname, navLinks]);
+  }, [location.pathname]);
 
   return (
     <div className="max-h-screen z-10 flex pl-4 flex-col w-full justify-between py-6">
@@ -83,7 +84,11 @@ const Navbar = () => {
           </ul>
           <div className="flex px-4 justify-start">
             {user && (
-              <button type="button" className="text-lime-800 font-bold text-lg">
+              <button
+                onClick={() => dispatch(signOut())}
+                type="button"
+                className="text-lime-800 font-bold text-lg"
+              >
                 Logout
               </button>
             )}

@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-// import axios from 'axios';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
@@ -18,6 +17,7 @@ const initialState = {
   currentPage: 1,
   startCount: 0,
   endCount: 3,
+  createLoading: false,
 };
 
 // Function to fetch all cabs
@@ -86,6 +86,17 @@ const fetchCabSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
+    builder.addCase(createCab.pending, (state) => {
+      state.createLoading = true;
+    });
+    builder.addCase(createCab.fulfilled, (state, action) => {
+      state.cabs.push(action.payload);
+      state.createLoading = false;
+    });
+    builder.addCase(createCab.rejected, (state, action) => {
+      state.error = action.error.message;
+      state.createLoading = false;
+    });
     builder.addCase(fetchCabs.pending, (state) => {
       state.loading = true;
     });

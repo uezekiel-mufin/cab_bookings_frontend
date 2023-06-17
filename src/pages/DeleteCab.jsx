@@ -11,14 +11,20 @@ const DeleteCab = () => {
   const [newCabs, setNewCabs] = useState([]);
   const [loading, setLoading] = useState(false);
   const [selectedId, setSelectedId] = useState(0);
+  const { cabs } = useSelector((state) => state.fetchCab);
+
+  console.log(cabs);
+  console.log(user);
 
   useEffect(() => {
     dispatch(setUserCabs(user?.id));
-  }, [user?.id]);
+  }, [dispatch, user?.id]);
 
   useEffect(() => {
     setNewCabs(userCabs);
   }, [userCabs]);
+
+  console.log(userCabs);
 
   // Function to delete a cab using its id
   const handleDelete = async (id) => {
