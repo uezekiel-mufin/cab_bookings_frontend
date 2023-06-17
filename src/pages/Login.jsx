@@ -56,7 +56,7 @@ const Login = () => {
         </button>
       </form>
       <p className="flex justify-center">
-        Don't have an account?&nbsp;
+        Don&apos;t have an account?&nbsp;
         <Link to="/signup" className="text-blue-800 font-italic">
           Sign Up
         </Link>
