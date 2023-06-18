@@ -27,9 +27,7 @@ const NewReservation = () => {
     setLoading(true);
     const obj = { user_id: user.id, reserve_date: date, cab_id: cab, city };
     const result = await dispatch(createReservation(obj));
-    console.log(result);
-    if (result.payload === 'Created') {
-      toast.success('Reservation created successfully');
+    if (result.meta.requestStatus === 'fulfilled') {
       setSelectedCab('');
       reset();
       navigate('/reservations');
