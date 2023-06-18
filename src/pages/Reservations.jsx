@@ -29,10 +29,7 @@ const Reservations = () => {
   const handleDelete = async (id) => {
     setSelectedId(id);
     setLoading(true);
-    const result = await dispatch(deleteReservation(id));
-    if (result.payload === 'OK') {
-      setNewReservations(newReservations.filter((item) => item.id !== id));
-    }
+    dispatch(deleteReservation(id));
     setLoading(false);
   };
 
