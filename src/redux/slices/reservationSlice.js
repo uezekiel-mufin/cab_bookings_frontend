@@ -25,24 +25,19 @@ export const fetchReservations = createAsyncThunk(
 export const createReservation = createAsyncThunk(
   'createReservation',
   async (obj) => {
-    const response = await axios.post(`${url}/reservations`, {
+    const { data } = await axios.post(`${url}/reservations`, {
       reservation: obj,
     });
 
-    return response.statusText;
+    return data;
   },
 );
 
 export const deleteReservation = createAsyncThunk(
   'deleteReservation',
   async (id) => {
-    const response = await axios.delete(`${url}/reservations/${id}`);
-    if (response.statusText === 'OK') {
-      toast.success('Your reservation has been deleted');
-    } else {
-      toast.error('There was an error deleting the reservation');
-    }
-    return response.statusText;
+    const { data } = await axios.delete(`${url}/reservations/${id}`);
+    return { ...data, id };
   },
 );
 
@@ -55,6 +50,7 @@ const reservationSlice = createSlice({
       state.loading = true;
     });
     builders.addCase(createReservation.fulfilled, (state) => {
+      toast.success('Your Cab has been reserved successfully');
       state.loading = false;
     });
     builders.addCase(createReservation.rejected, (state) => {
@@ -72,6 +68,21 @@ const reservationSlice = createSlice({
     builders.addCase(fetchReservations.rejected, (state) => {
       state.loading = false;
       state.error = 'There was an error fetching the reservations';
+    });
+    builders.addCase(deleteReservation.pending, (state) => {
+      state.loading = true;
+    });
+    builders.addCase(deleteReservation.fulfilled, (state, action) => {
+      state.loading = false;
+      state.reservations = state.reservations.filter(
+        (reservation) => reservation.id !== action.payload.id,
+      );
+      toast.success('Reservation deleted successfully');
+    });
+    builders.addCase(deleteReservation.rejected, (state) => {
+      state.loading = false;
+      state.error = 'There was an error deleting the reservations';
+      toast.error('There was an error deleting the reservations');
     });
   },
 });

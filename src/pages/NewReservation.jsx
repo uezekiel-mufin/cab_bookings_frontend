@@ -5,7 +5,6 @@ import { useForm } from 'react-hook-form';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Circles } from 'react-loader-spinner';
 import { useDispatch, useSelector } from 'react-redux';
-import { toast } from 'react-toastify';
 import { createReservation } from '../redux/slices/reservationSlice';
 
 const NewReservation = () => {
@@ -28,8 +27,7 @@ const NewReservation = () => {
     setLoading(true);
     const obj = { user_id: user.id, reserve_date: date, cab_id: cab, city };
     const result = await dispatch(createReservation(obj));
-    if (result.payload === 'Created') {
-      toast.success('Reservation created successfully');
+    if (result.meta.requestStatus === 'fulfilled') {
       setSelectedCab('');
       reset();
       navigate('/reservations');
