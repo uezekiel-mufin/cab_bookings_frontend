@@ -24,17 +24,12 @@ export const loginUser = createAsyncThunk('user/loginUser', async (user) => {
 });
 
 export const signUpUser = createAsyncThunk('user/signUpUser', async (user) => {
-  const response = await axios.post(
-    `${usersUrl}`,
-    {
-      user,
+  const response = await axios.post(`${usersUrl}`, {
+    user,
+    headers: {
+      'Content-Type': 'application/json',
     },
-    {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    },
-  );
+  });
   const { data } = response;
   return data;
 });

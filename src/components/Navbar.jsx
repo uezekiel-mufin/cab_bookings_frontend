@@ -16,7 +16,7 @@ const navLinks = [
   {
     id: 2,
     name: 'Reserve',
-    path: '/reservations/new',
+    path: '/reservations-new',
   },
   {
     id: 3,
@@ -26,7 +26,7 @@ const navLinks = [
   {
     id: 4,
     name: 'Add Cab',
-    path: '/cabs/new',
+    path: '/cabs-new',
   },
   {
     id: 5,
@@ -49,7 +49,7 @@ const Navbar = () => {
   };
 
   useEffect(() => {
-    const link = navLinks.find((item) => location.pathname.includes(item.path));
+    const link = navLinks.find((item) => location.pathname === item.path);
     setActiveLink(link?.id);
   }, [location.pathname]);
 
