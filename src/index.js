@@ -35,11 +35,11 @@ const router = createBrowserRouter([
         element: <Reservations />,
       },
       {
-        path: 'cabs/new',
+        path: 'cabs-new',
         element: <AddCab />,
       },
       {
-        path: 'reservations/new',
+        path: 'reservations-new',
         element: <NewReservation />,
       },
       {

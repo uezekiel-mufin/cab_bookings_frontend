@@ -14,24 +14,22 @@ export const loginUser = createAsyncThunk('user/loginUser', async (user) => {
   const response = await axios.post(`${usersUrl}/sign_in`, {
     user,
   });
-  console.log(response);
   const { data } = response;
-  return data;
+  const { user: userData } = data;
+  const token = {
+    userData,
+    status: response.status,
+  };
+  return token;
 });
 
 export const signUpUser = createAsyncThunk('user/signUpUser', async (user) => {
-  console.log(user);
-  const response = await axios.post(
-    `${usersUrl}`,
-    {
-      user,
+  const response = await axios.post(`${usersUrl}`, {
+    user,
+    headers: {
+      'Content-Type': 'application/json',
     },
-    {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    },
-  );
+  });
   const { data } = response;
   return data;
 });
@@ -53,8 +51,10 @@ export const userSlice = createSlice({
     });
     builder.addCase(loginUser.fulfilled, (state, action) => {
       state.loading = false;
-      state.user = action.payload.user;
-      Cookies.set('user', JSON.stringify(action.payload.user), { expires: 2 });
+      state.user = action.payload.userData;
+      Cookies.set('user', JSON.stringify(action.payload.userData), {
+        expires: 2,
+      });
     });
   },
 });

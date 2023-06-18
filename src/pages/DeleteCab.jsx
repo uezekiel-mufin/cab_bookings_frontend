@@ -18,13 +18,11 @@ const DeleteCab = () => {
 
   useEffect(() => {
     dispatch(setUserCabs(user?.id));
-  }, [dispatch, user?.id]);
+  }, [dispatch, user?.id, cabs]);
 
   useEffect(() => {
     setNewCabs(userCabs);
   }, [userCabs]);
-
-  console.log(userCabs);
 
   // Function to delete a cab using its id
   const handleDelete = async (id) => {

@@ -24,7 +24,8 @@ const Login = () => {
       password,
     };
     const result = await dispatch(loginUser(user));
-    if (result?.payload?.message === 'You are logged in') {
+    console.log(result);
+    if (result?.payload?.status === 200) {
       toast.success('Login successful');
       navigate('/cabs');
       setLoading(false);
