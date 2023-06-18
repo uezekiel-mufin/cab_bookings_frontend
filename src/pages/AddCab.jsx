@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { Circles } from 'react-loader-spinner';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import ImageUploader from '../components/ImageUploader';
@@ -11,6 +12,7 @@ import { createCab } from '../redux/slices/cabSlice';
 const AddCab = () => {
   const [imageUrl, setImageUrl] = useState('');
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.user);
   const {
@@ -33,6 +35,7 @@ const AddCab = () => {
       );
       if (result.payload.id) {
         setLoading(false);
+        navigate('/cabs');
       }
       reset();
     } catch (error) {
@@ -61,8 +64,7 @@ const AddCab = () => {
               id="model"
               placeholder="eg. Corolla, Camry, etc"
               {...register('model', {
-                required: true,
-                message: 'Please enter the cab model',
+                required: 'Please enter the cab model',
               })}
             />
           </label>
@@ -81,8 +83,7 @@ const AddCab = () => {
               id="manufacturer"
               placeholder="eg. Ford, Toyota, etc"
               {...register('manufacturer', {
-                required: true,
-                message: 'Please enter the manufacturer name',
+                required: 'Please enter the manufacturer name',
               })}
             />
           </label>
@@ -101,8 +102,7 @@ const AddCab = () => {
               id="transmission"
               placeholder="manual or automatic"
               {...register('transmission', {
-                required: true,
-                message: 'Please enter a transmission type',
+                required: 'Please enter a transmission type',
               })}
             />
           </label>
@@ -121,12 +121,15 @@ const AddCab = () => {
               id="rental_price"
               placeholder="e.g 200, 500, 5000, 10000"
               {...register('rental_price', {
-                required: true,
-                message: 'Please enter a rental prize for this cab',
+                required: 'Please enter a rental prize for this cab',
               })}
             />
           </label>
-          {errors.rental_price && <span>{errors.rental_price.message}</span>}
+          {errors.rental_price && (
+            <span className="text-red-500 text-base">
+              {errors.rental_price.message}
+            </span>
+          )}
         </div>
         <div>
           <label htmlFor="discount">
@@ -137,12 +140,15 @@ const AddCab = () => {
               id="discount"
               placeholder="e.g 5, 10, 20, 30"
               {...register('discount', {
-                required: true,
-                message: 'Please enter a rental discount',
+                required: 'Please enter a rental discount',
               })}
             />
           </label>
-          {errors.discount && <span>{errors.discount.message}</span>}
+          {errors.discount && (
+            <span className="text-red-500 text-base">
+              {errors.discount.message}
+            </span>
+          )}
         </div>
         <div>
           <label htmlFor="engine_type">
@@ -153,12 +159,15 @@ const AddCab = () => {
               id="engine_type"
               placeholder="2.5L V6 or 2.0L I4"
               {...register('engine_type', {
-                required: true,
-                message: 'Please enter an engine type',
+                required: 'Please enter an engine type',
               })}
             />
           </label>
-          {errors.engine_type && <span>{errors.engine_type.message}</span>}
+          {errors.engine_type && (
+            <span className="text-red-500 text-base">
+              {errors.engine_type.message}
+            </span>
+          )}
         </div>
         <div>
           <label htmlFor="cab">
@@ -168,13 +177,14 @@ const AddCab = () => {
               name="seating_capacity"
               id="seating_capacity"
               {...register('seating_capacity', {
-                required: true,
-                message: 'Please enter the seating capacity',
+                required: 'Please enter the seating capacity',
               })}
             />
           </label>
           {errors.seating_capacity && (
-            <span>{errors.seating_capacity.message}</span>
+            <span className="text-red-500 text-base">
+              {errors.seating_capacity.message}
+            </span>
           )}
         </div>
         <div>
@@ -186,12 +196,15 @@ const AddCab = () => {
               id="body_type"
               placeholder="sedan, suv"
               {...register('body_type', {
-                required: true,
-                message: 'Please enter the body type',
+                required: 'Please enter the body type',
               })}
             />
           </label>
-          {errors.body_type && <span>{errors.body_type.message}</span>}
+          {errors.body_type && (
+            <span className="text-red-500 text-base">
+              {errors.body_type.message}
+            </span>
+          )}
         </div>
         <div className="md:col-span-2">
           <label htmlFor="description">
@@ -202,17 +215,24 @@ const AddCab = () => {
               name="description"
               id="description"
               {...register('description', {
-                required: true,
-                message: 'Please enter the car description',
+                required: 'Please enter the car description',
               })}
             />
           </label>
-          {errors.description && <span>{errors.description.message}</span>}
+          {errors.description && (
+            <span className="text-red-500 text-base">
+              {errors.description.message}
+            </span>
+          )}
         </div>
         <div className="md:col-span-2">
           <h5 className="block font-semibold text-xl">Image</h5>
           <ImageUploader setImageUrl={setImageUrl} />
-          {errors.image_url && <span>{errors.image_url.message}</span>}
+          {errors.image_url && (
+            <span className="text-red-500 text-base">
+              {errors.image_url.message}
+            </span>
+          )}
         </div>
 
         <div className="md:col-span-2 flex justify-center">
@@ -223,8 +243,8 @@ const AddCab = () => {
           >
             {loading ? (
               <Circles
-                height="50"
-                width="50"
+                height="30"
+                width="30"
                 color="#ffffff"
                 ariaLabel="circles-loading"
                 wrapperStyle={{}}

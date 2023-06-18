@@ -37,8 +37,10 @@ export const deleteReservation = createAsyncThunk(
   'deleteReservation',
   async (id) => {
     const response = await axios.delete(`${url}/reservations/${id}`);
-    if (response.statusText === 'ok') {
+    if (response.statusText === 'OK') {
       toast.success('Your reservation has been deleted');
+    } else {
+      toast.error('There was an error deleting the reservation');
     }
     return response.statusText;
   },
@@ -54,7 +56,6 @@ const reservationSlice = createSlice({
     });
     builders.addCase(createReservation.fulfilled, (state) => {
       state.loading = false;
-      toast.success('Your reservation has been created');
     });
     builders.addCase(createReservation.rejected, (state) => {
       state.loading = false;

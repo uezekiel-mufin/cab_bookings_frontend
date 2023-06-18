@@ -15,12 +15,12 @@ const navLinks = [
   },
   {
     id: 2,
-    name: 'Reserve',
+    name: 'Reserve Cab',
     path: '/reservations-new',
   },
   {
     id: 3,
-    name: 'My Reservations',
+    name: 'Reservations',
     path: '/reservations',
   },
   {

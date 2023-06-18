@@ -14,6 +14,8 @@ const CabIndex = () => {
   const currentPage = useSelector((state) => state.fetchCab.currentPage);
   const numOfPages = useSelector((state) => state.fetchCab.numOfPages);
 
+  const totalCabs = useSelector((state) => state.fetchCab.cabs);
+
   useEffect(() => {
     dispatch(fetchCabs());
   }, [dispatch]);
@@ -57,7 +59,7 @@ const CabIndex = () => {
       )}
       <section className="mb-16 lg:mb-0">
         <ul className="grid pb-12 grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 relative gap-8 gap-y-16  items-center transition-all duration-300 ease-linear justify-center p-12 px-4 md:px-12 lg:px-20 xl:px-32">
-          {cabsLists.length > 0 && currentPage > 1 && (
+          {totalCabs.length > 3 && (
             <>
               <button
                 className={`absolute top-full my-8 lg:top-1/2 left-0 transform -translate-y-1/2 ${

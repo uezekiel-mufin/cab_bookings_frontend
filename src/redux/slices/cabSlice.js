@@ -34,20 +34,13 @@ export const fetchCab = createAsyncThunk('fetchCab', async (id) => {
 
 // Function to create a cab
 export const createCab = createAsyncThunk('createCab', async (cab) => {
-  try {
-    const response = await axios.post(`${url}/cabs`, {
-      cab,
-    });
-    console.log(response);
-    const { data } = response;
-    if (response.status === 201) {
-      toast.success('Cab created successfully');
-      return data;
-    }
-  } catch (error) {
-    toast.error('There was an error creating the cab');
-  }
-  return null;
+  const response = await axios.post(`${url}/cabs`, {
+    cab,
+  });
+  console.log(response);
+  const { data } = response;
+  toast.success('Cab created successfully');
+  return data;
 });
 
 export const deleteCab = createAsyncThunk('deleteCab', async (id) => {

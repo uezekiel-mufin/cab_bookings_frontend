@@ -71,6 +71,11 @@ const Login = () => {
               required: 'Please enter the Password',
             })}
           />
+          {errors.password && (
+            <span className="text-red-500 text-base">
+              {errors.password.message}
+            </span>
+          )}
         </div>
         {loading ? (
           <div className="flex justify-center w-full">

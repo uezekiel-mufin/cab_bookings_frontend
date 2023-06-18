@@ -5,8 +5,7 @@ import axios from 'axios';
 const usersUrl = process.env.REACT_APP_API_USERS;
 
 const initialState = {
-  // user: Cookies.get('user') ? JSON.parse(Cookies.get('user')) : null,
-  user: null,
+  user: Cookies.get('user') ? JSON.parse(Cookies.get('user')) : null,
   loading: false,
   error: '',
 };

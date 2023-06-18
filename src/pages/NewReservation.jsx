@@ -2,13 +2,15 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Circles } from 'react-loader-spinner';
 import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 import { createReservation } from '../redux/slices/reservationSlice';
 
 const NewReservation = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const { state } = useLocation();
   const { user } = useSelector((state) => state.user);
@@ -28,8 +30,10 @@ const NewReservation = () => {
     const result = await dispatch(createReservation(obj));
     console.log(result);
     if (result.payload === 'Created') {
+      toast.success('Reservation created successfully');
       setSelectedCab('');
       reset();
+      navigate('/reservations');
     }
     setLoading(false);
   };
@@ -52,12 +56,15 @@ const NewReservation = () => {
                 name="city"
                 id="city"
                 {...register('city', {
-                  required: true,
-                  message: 'Please enter your city',
+                  required: 'Please enter your city',
                 })}
               />
             </label>
-            {errors.city && <span>{errors.city.message}</span>}
+            {errors.city && (
+              <span className="text-red-500 text-base">
+                {errors.city.message}
+              </span>
+            )}
           </div>
           <div className="flex flex-col">
             <label htmlFor="date">
@@ -67,12 +74,15 @@ const NewReservation = () => {
                 name="date"
                 id="date"
                 {...register('date', {
-                  required: true,
-                  message: 'Please select a date',
+                  required: 'Please select a date',
                 })}
               />
             </label>
-            {errors.date && <span>{errors.date.message}</span>}
+            {errors.date && (
+              <span className="text-red-500 text-base">
+                {errors.date.message}
+              </span>
+            )}
           </div>
           <div className="flex flex-col">
             <label htmlFor="Cab">
@@ -96,7 +106,11 @@ const NewReservation = () => {
                 ))}
               </select>
             </label>
-            {errors.cab && <span>{errors.cab.message}</span>}
+            {errors.cab && (
+              <span className="text-red-500 text-base">
+                {errors.cab.message}
+              </span>
+            )}
           </div>
           <div className="flex flex-col">
             <label htmlFor="Cab">
@@ -107,12 +121,15 @@ const NewReservation = () => {
                 id="name"
                 defaultValue={user?.name}
                 {...register('name', {
-                  required: true,
-                  message: 'Please choose a name',
+                  required: 'Please choose a name',
                 })}
               />
             </label>
-            {errors.name && <span>{errors.name.message}</span>}
+            {errors.name && (
+              <span className="text-red-500 text-base">
+                {errors.name.message}
+              </span>
+            )}
           </div>
 
           <div>
