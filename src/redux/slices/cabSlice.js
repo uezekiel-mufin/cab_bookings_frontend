@@ -37,7 +37,6 @@ export const createCab = createAsyncThunk('createCab', async (cab) => {
   const response = await axios.post(`${url}/cabs`, {
     cab,
   });
-  console.log(response);
   const { data } = response;
   toast.success('Cab created successfully');
   return data;
@@ -85,7 +84,6 @@ const fetchCabSlice = createSlice({
     });
     builder.addCase(createCab.fulfilled, (state, action) => {
       state.createLoading = false;
-      console.log(action.payload);
       state.cabs = [...state.cabs, action.payload];
     });
     builder.addCase(createCab.rejected, (state, action) => {
