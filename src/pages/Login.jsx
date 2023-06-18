@@ -1,10 +1,10 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { Circles } from 'react-loader-spinner';
-import { toast } from 'react-toastify';
 import { loginUser } from '../redux/slices/userSlice';
 
 const Login = () => {
@@ -24,13 +24,12 @@ const Login = () => {
       password,
     };
     const result = await dispatch(loginUser(user));
-    console.log(result);
     if (result?.payload?.status === 200) {
       toast.success('Login successful');
       navigate('/cabs');
       setLoading(false);
     } else {
-      toast.error('Login failed');
+      toast.error('Login failed, Invalid credentials');
       setLoading(false);
     }
   };

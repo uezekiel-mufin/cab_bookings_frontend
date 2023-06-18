@@ -36,7 +36,7 @@ const NewReservation = () => {
 
   return (
     <main className="flex w-full h-screen px-4 bg-reserve-bg bg-reserve-color bg-blend-multiply text-white bg-center bg-cover overflow-auto items-center gap-12 justify-center pt-10">
-      <section className="bg-lime-50 px-4 w-full md:w-auto py-8 pb-4 text-gray-700 rounded-md">
+      <section className="bg-lime-50 px-4 w-full md:w-auto py-16 pb-4 text-gray-700 rounded-md">
         <h1 className="flex tracking-widest text-lime-800 w-full  justify-center text-xl md:text-3xl lg:text-4xl mb-8 font-bold">
           Book a Ride with Carbooky!
         </h1>

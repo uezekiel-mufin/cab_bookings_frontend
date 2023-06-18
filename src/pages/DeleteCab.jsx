@@ -13,9 +13,6 @@ const DeleteCab = () => {
   const [selectedId, setSelectedId] = useState(0);
   const { cabs } = useSelector((state) => state.fetchCab);
 
-  console.log(cabs);
-  console.log(user);
-
   useEffect(() => {
     dispatch(setUserCabs(user?.id));
   }, [dispatch, user?.id, cabs]);
@@ -40,7 +37,7 @@ const DeleteCab = () => {
   };
 
   return (
-    <div className="h-screen flex flex-col items-center mt-8 bg-lime-50 space-y-4 pt-10 text-lime-800 md:px-10 lg:px-20">
+    <div className="h-screen flex flex-col items-center  bg-lime-50 space-y-4 pt-20 text-lime-800 md:px-10 lg:px-20">
       <h1 className="text-3xl text-center font-bold tracking-widest">
         Delete Cab
       </h1>

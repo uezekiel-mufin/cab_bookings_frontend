@@ -5,7 +5,8 @@ import axios from 'axios';
 const usersUrl = process.env.REACT_APP_API_USERS;
 
 const initialState = {
-  user: Cookies.get('user') ? JSON.parse(Cookies.get('user')) : null,
+  // user: Cookies.get('user') ? JSON.parse(Cookies.get('user')) : null,
+  user: null,
   loading: false,
   error: '',
 };
@@ -14,6 +15,7 @@ export const loginUser = createAsyncThunk('user/loginUser', async (user) => {
   const response = await axios.post(`${usersUrl}/sign_in`, {
     user,
   });
+
   const { data } = response;
   const { user: userData } = data;
   const token = {
@@ -51,10 +53,14 @@ export const userSlice = createSlice({
     });
     builder.addCase(loginUser.fulfilled, (state, action) => {
       state.loading = false;
-      state.user = action.payload.userData;
-      Cookies.set('user', JSON.stringify(action.payload.userData), {
+      state.user = action.payload?.userData;
+      Cookies.set('user', JSON.stringify(action.payload?.userData), {
         expires: 2,
       });
+    });
+    builder.addCase(loginUser.rejected, (state, action) => {
+      state.loading = false;
+      state.error = action.error.message;
     });
   },
 });

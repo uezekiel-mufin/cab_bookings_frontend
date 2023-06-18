@@ -17,7 +17,7 @@ const Cab = ({ cab }) => (
     </Link>
     <section className="flex flex-col gap-4 items-center justify-evenly">
       <h2 className="font-extrabold text-[#645858] text-xl tracking-wider">
-        {cab.model}
+        {`${cab.model.substring(0, 15)}`}
       </h2>
       <hr className="border-dotted w-full font-bold text-2xl border-[3px]" />
       <p className="text-[#807e80]">

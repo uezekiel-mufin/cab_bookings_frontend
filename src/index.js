@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './index.css';
 import { Provider } from 'react-redux';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import App from './App';
 import ErrorPage from './pages/ErrorPage';
 import CabIndex from './pages/CabIndex';
@@ -66,6 +68,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <Provider store={store}>
+      <ToastContainer position="top-center" />
       <RouterProvider router={router} />
     </Provider>
   </React.StrictMode>,

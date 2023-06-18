@@ -44,7 +44,7 @@ const AddCab = () => {
   };
 
   return (
-    <div className="py-16 space-y-8 bg-lime-50 h-screen overflow-auto">
+    <div className="py-20 space-y-8 bg-lime-50 h-screen overflow-auto">
       <h1 className="flex justify-center text-xl md:text-3xl text-lime-800 font-bold">
         Add a New Cab for Rentals
       </h1>

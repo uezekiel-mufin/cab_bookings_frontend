@@ -38,7 +38,7 @@ const CabIndex = () => {
   }
 
   return (
-    <main className="py-16 transition-all h-screen overflow-auto duration-300 ease-linear">
+    <main className="py-20 transition-all h-screen overflow-auto duration-300 ease-linear">
       <header className="flex flex-col gap-2 md:gap-4 text-lime-800 items-center">
         <h1 className="font-extrabold text-2xl lg:text-3xl xl:text-5xl capitalize">
           Secure your ride
@@ -57,7 +57,7 @@ const CabIndex = () => {
       )}
       <section className="mb-16 lg:mb-0">
         <ul className="grid pb-12 grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 relative gap-8 gap-y-16  items-center transition-all duration-300 ease-linear justify-center p-12 px-4 md:px-12 lg:px-20 xl:px-32">
-          {cabsLists.length > 0 && (
+          {cabsLists.length > 0 && currentPage > 1 && (
             <>
               <button
                 className={`absolute top-full my-8 lg:top-1/2 left-0 transform -translate-y-1/2 ${

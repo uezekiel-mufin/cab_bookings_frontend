@@ -54,7 +54,7 @@ const Navbar = () => {
   }, [location.pathname]);
 
   return (
-    <div className="max-h-screen z-10 flex pl-4 flex-col w-full justify-between py-6">
+    <div className="h-screen z-10 flex pl-4 flex-col w-full justify-between py-6">
       <section className="flex justify-between gap-12  flex-col">
         <div className="flex justify-between px-4 items-center w-full">
           <h1 className="text-indigo-500 text-3xl  font-extrabold">CarBooky</h1>
@@ -85,7 +85,10 @@ const Navbar = () => {
           <div className="flex px-4  mt-2 justify-start">
             {user && (
               <button
-                onClick={() => dispatch(signOut())}
+                onClick={() => {
+                  dispatch(toggleMenu());
+                  dispatch(signOut());
+                }}
                 type="button"
                 className="text-lime-800 font-bold text-lg"
               >

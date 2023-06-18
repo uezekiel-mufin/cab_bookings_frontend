@@ -46,6 +46,12 @@ textarea:focus {
   animation-name: slide-in;
   animation-duration: 2s; /* changed from 1s to 5s */
   animation-fill-mode: both;
+  position: fixed;
+  top: 0;
+  z-index: 100;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 
 label {

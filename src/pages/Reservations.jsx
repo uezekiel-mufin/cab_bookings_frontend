@@ -52,7 +52,7 @@ const Reservations = () => {
     );
   }
   return (
-    <div className="h-screen flex flex-col items-center p-4 md:p-12 lg:p-20 pt-12 gap-8 pb-32">
+    <div className="h-screen flex flex-col items-center p-4 pt-20 md:p-12 lg:p-20 gap-8 pb-32">
       <h1 className="text-3xl font-bold text-lime-800">Reservation Details</h1>
       <hr className="border-dotted w-[300px]  font-bold text-2xl border-[3px]" />
       {newReservations.length === 0 && (
@@ -69,15 +69,19 @@ const Reservations = () => {
             className="flex flex-col shadow-lg border gap-1 justify-center items-center p-4"
           >
             <h3 className="flex w-full justify-between">
-              <p className="font-semibold text-lg">Item Name </p>
+              <p className="font-semibold text-base md:text-lg">Item Name </p>
               <p>{reservation.cab.model}</p>
             </h3>
             <h3 className="flex w-full justify-between">
-              <p className="font-semibold text-lg">Reservation Date </p>
+              <p className="font-semibold text-base md:text-lg">
+                Reservation Date
+              </p>
               <p>{reservation.reserve_date}</p>
             </h3>
             <h3 className="flex w-full justify-between">
-              <p className="font-semibold text-lg">Reservation City </p>
+              <p className="font-semibold text-base md:text-lg">
+                Reservation City
+              </p>
               <p>{reservation.city}</p>
             </h3>
             <div className="flex justify-stretch md:justify-end w-full mt-4 capitalize">
