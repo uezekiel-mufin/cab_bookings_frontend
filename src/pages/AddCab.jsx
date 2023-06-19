@@ -1,3 +1,4 @@
+/* eslint-disable operator-linebreak */
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable object-curly-newline */
 import React, { useState } from 'react';
@@ -20,6 +21,7 @@ const AddCab = () => {
     handleSubmit,
     formState: { errors },
     reset,
+    watch,
   } = useForm();
 
   // function to handle cab creation
@@ -44,8 +46,10 @@ const AddCab = () => {
     return true;
   };
 
+  const descriptionLength = watch('description');
+
   return (
-    <div className="py-20 space-y-8 bg-lime-50 h-screen overflow-auto">
+    <div className="py-20 space-y-8 bg-lime-50 text-lime-800 h-screen overflow-auto">
       <h1 className="flex justify-center text-xl md:text-3xl text-lime-800 font-bold">
         Add a New Cab for Rentals
       </h1>
@@ -206,22 +210,44 @@ const AddCab = () => {
         </div>
         <div className="md:col-span-2">
           <label htmlFor="description">
-            Description
+            <span className="flex justify-between">
+              <p>Description</p>
+              <p>
+                <span
+                  className={`${
+                    descriptionLength.length <= 1000
+                      ? 'text-lime-700'
+                      : 'text-red-500'
+                  }`}
+                >
+                  {' '}
+                  {descriptionLength?.length || 0}
+                </span>
+                /1000
+              </p>
+            </span>
             <textarea
               rows={5}
               type="text"
               name="description"
               id="description"
+              // disabled={descriptionLength?.length >= 1000}
               {...register('description', {
                 required: 'Please enter the car description',
+                maxLength: {
+                  value: 1000,
+                  message: 'Description must not exceed 1000 characters',
+                },
               })}
             />
           </label>
-          {errors.description && (
-            <span className="text-red-500 text-base">
-              {errors.description.message}
-            </span>
-          )}
+          {errors.description ||
+            (descriptionLength?.length >= 1000 && (
+              <span className="text-red-500 text-base">
+                {errors?.description?.message ||
+                  'Description must not exceed 1000 characters'}
+              </span>
+            ))}
         </div>
         <div className="md:col-span-2">
           <h5 className="block font-semibold text-xl">Image</h5>
