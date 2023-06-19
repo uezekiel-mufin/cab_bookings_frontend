@@ -1,50 +1,46 @@
 /* eslint-disable operator-linebreak */
 /* eslint-disable implicit-arrow-linebreak */
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import TestRenderer from 'react-test-renderer';
 import '@testing-library/jest-dom';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import store from '../redux/store/store';
-import DeleteCab from '../pages/DeleteCab';
+import Login from '../pages/Login';
 
 describe('Delete Cab', () => {
-  it('renders', () => {
+  it('renders sign up component', () => {
     const tree = TestRenderer.create(
       <Provider store={store}>
         <BrowserRouter>
-          <DeleteCab />
+          <Login />
         </BrowserRouter>
       </Provider>,
     ).toJSON();
     expect(tree).toMatchSnapshot();
   });
-  it('renders Delete Cab', async () => {
+  it('renders Sign up form', () => {
     render(
       <Provider store={store}>
         <BrowserRouter>
-          <DeleteCab />
+          <Login />
         </BrowserRouter>
       </Provider>,
     );
 
-    await waitFor(() => {
-      const header = screen.getByText(/Delete Cab/i);
-      expect(header).toBeInTheDocument();
-    });
+    const signup = screen.getByText(/Sign Up/i);
+    expect(signup).toBeInTheDocument();
   });
-  it('renders Delete Cab', async () => {
+  it('renders sign up component and whows the already have an account test', async () => {
     render(
       <Provider store={store}>
         <BrowserRouter>
-          <DeleteCab />
+          <Login />
         </BrowserRouter>
       </Provider>,
     );
 
-    await waitFor(() => {
-      const subHead = screen.getByText(/No cabs available.../i);
-      expect(subHead).toBeInTheDocument();
-    });
+    const subHead = screen.getByText(/Don't have an account?/i);
+    expect(subHead).toBeInTheDocument();
   });
 });

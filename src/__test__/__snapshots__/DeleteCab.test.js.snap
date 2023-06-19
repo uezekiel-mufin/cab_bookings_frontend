@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`CabIndex renders 1`] = `
+exports[`Delete Cab renders 1`] = `
 <div
   className="h-screen flex flex-col items-center  bg-lime-50 space-y-4 pt-20 text-lime-800 md:px-10 lg:px-20"
 >

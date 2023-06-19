@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Delete Cab renders sign up component 1`] = `
+<div
+  className="pt-40 space-y-8 bg-lime-50 h-screen overflow-auto"
+>
+  <h2
+    className="flex justify-center text-3xl md:text-4xl tracking-widest text-lime-800 font-bold"
+  >
+    Login
+  </h2>
+  <form
+    className="w-full grid grid-cols-1 gap-4 mb-20 px-4 md:px-10 text-lime-800 lg:px-20 xl:px-40 md:gap-x-8"
+    onSubmit={[Function]}
+  >
+    <div>
+      <input
+        id="email"
+        name="email"
+        onBlur={[Function]}
+        onChange={[Function]}
+        placeholder="Email"
+        type="text"
+      />
+    </div>
+    <div>
+      <input
+        id="password"
+        name="password"
+        onBlur={[Function]}
+        onChange={[Function]}
+        placeholder="Password"
+        type="password"
+      />
+    </div>
+    <button
+      className="bg-lime-700 w-full flex gap-2 items-center transition-all duration-300 text-white rounded-md justify-center text-2xl px-8 py-2"
+      type="submit"
+    >
+      Login
+    </button>
+  </form>
+  <p
+    className="flex justify-center"
+  >
+    Don't have an account? 
+    <a
+      className="text-blue-800 font-italic"
+      href="/signup"
+      onClick={[Function]}
+    >
+      Sign Up
+    </a>
+  </p>
+</div>
+`;

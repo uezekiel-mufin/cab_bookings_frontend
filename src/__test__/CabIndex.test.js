@@ -2,16 +2,30 @@
 /* eslint-disable implicit-arrow-linebreak */
 import { render, screen, waitFor } from '@testing-library/react';
 import TestRenderer from 'react-test-renderer';
+import configureMockStore from 'redux-mock-store';
+import thunk from 'redux-thunk';
+import MockAdapter from 'axios-mock-adapter';
+import axios from 'axios';
 import '@testing-library/jest-dom';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import CabIndex from '../pages/CabIndex';
+import cabData from '../library/cabs';
 import store from '../redux/store/store';
+import Cab from '../components/Cab';
+
+/**
+ * @jest-environment jsdom
+ */
+
+const mock = new MockAdapter(axios);
+const mockStore = configureMockStore([thunk]);
 
 describe('CabIndex', () => {
   it('renders', () => {
+    mock.onGet('http://127.0.0.1:3000/api/v1/cabs').reply(200, cabData);
     const tree = TestRenderer.create(
-      <Provider store={store}>
+      <Provider store={mockStore(store.getState())}>
         <BrowserRouter>
           <CabIndex />
         </BrowserRouter>
@@ -20,8 +34,9 @@ describe('CabIndex', () => {
     expect(tree).toMatchSnapshot();
   });
   it('renders CabIndex and checks for main header', async () => {
+    mock.onGet('http://127.0.0.1:3000/api/v1/cabs').reply(200, cabData);
     render(
-      <Provider store={store}>
+      <Provider store={mockStore(store.getState())}>
         <BrowserRouter>
           <CabIndex />
         </BrowserRouter>
@@ -34,8 +49,10 @@ describe('CabIndex', () => {
     });
   });
   it('renders CabIndex and checks for the subheader', async () => {
+    mock.onGet('http://127.0.0.1:3000/api/v1/cabs').reply(200, cabData);
+
     render(
-      <Provider store={store}>
+      <Provider store={mockStore(store.getState())}>
         <BrowserRouter>
           <CabIndex />
         </BrowserRouter>
@@ -48,21 +65,21 @@ describe('CabIndex', () => {
     });
   });
 
-  // test('renders CabIndex and checks for existence of data', () => {
-  //   render(
-  //     <Provider store={store}>
-  //       <BrowserRouter>
-  //         <Cab cab={testCab} />
-  //       </BrowserRouter>
-  //     </Provider>,
-  //   );
+  test('renders CabIndex and checks for existence of data', async () => {
+    mock.onGet('http://127.0.0.1:3000/api/v1/cabs').reply(200, cabData);
 
-  //   const cabTitle = screen.getByText(
-  //     (content, element) =>
-  //       element.tagName.toLowerCase() === 'h2' &&
-  //       content.includes(testCab.model),
-  //   );
+    render(
+      <Provider store={mockStore(store.getState())}>
+        <BrowserRouter>
+          <Cab cab={cabData[0]} />
+        </BrowserRouter>
+      </Provider>,
+    );
 
-  //   expect(cabTitle).toBeInTheDocument();
-  // });
+    // Wait for the component to update with fetched data
+    await waitFor(() => {
+      const dataElement = screen.getByText(cabData[0].model);
+      expect(dataElement).toBeInTheDocument();
+    });
+  });
 });

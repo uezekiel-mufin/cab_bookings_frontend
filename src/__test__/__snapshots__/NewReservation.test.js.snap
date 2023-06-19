@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`CabIndex renders 1`] = `
+exports[`New Reservation renders 1`] = `
 <main
   className="flex w-full h-screen px-4 bg-reserve-bg bg-reserve-color bg-blend-multiply text-white bg-center bg-cover overflow-auto items-center gap-12 justify-center pt-10"
 >

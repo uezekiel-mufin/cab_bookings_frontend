@@ -8,7 +8,7 @@ import { BrowserRouter } from 'react-router-dom';
 import store from '../redux/store/store';
 import NewReservation from '../pages/NewReservation';
 
-describe('CabIndex', () => {
+describe('New Reservation', () => {
   it('renders', () => {
     const tree = TestRenderer.create(
       <Provider store={store}>
@@ -19,7 +19,7 @@ describe('CabIndex', () => {
     ).toJSON();
     expect(tree).toMatchSnapshot();
   });
-  it('renders CabIndex and checks for main header', async () => {
+  it('renders New Reservation', async () => {
     render(
       <Provider store={store}>
         <BrowserRouter>
