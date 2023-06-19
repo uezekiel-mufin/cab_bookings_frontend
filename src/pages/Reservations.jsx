@@ -55,7 +55,7 @@ const Reservations = () => {
       {newReservations.length === 0 && (
         <section className="flex justify-center pt-20 text-lime-800 items-center">
           <h1 className="text-2xl text-center font-bold tracking-widest">
-            No cabs available...
+            No Reservations available...
           </h1>
         </section>
       )}

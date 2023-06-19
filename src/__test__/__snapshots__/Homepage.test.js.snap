@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Homepage renders 1`] = `
+<div
+  className="flex flex-col relative px-4 items-center justify-center h-screen bg-lime-900"
+>
+  <h1
+    className=" text-center text-4xl leading-10 tracking-widest lg:text-5xl font-bold text-lime-100 mb-4"
+  >
+    Welcome to CarBooky
+  </h1>
+  <p
+    className="text-lime-200 text-xl mb-32 md:mb-12"
+  >
+    Book a ride in just a few clicks!
+  </p>
+  <div
+    className="flex flex-col md:flex-row mt-12 md:mt-4 absolute bottom-12 left-0 md:static justify-center items-center px-10 gap-4 w-full md:w-auto"
+  >
+    <a
+      className="px-10 py-4  w-full font-semibold text-center text-white transition duration-300 rounded-lg hover:from-lime-600 text-2xl hover:to-pink-600 ease bg-gradient-to-br from-gray-500 to-pink-500 md:w-[250px]"
+      href="/login"
+      onClick={[Function]}
+    >
+      Log in
+    </a>
+    <a
+      className="px-10 py-4 text-2xl w-full font-semibold text-center text-white transition duration-300 rounded-lg hover:from-lime-600 hover:to-pink-600 ease bg-gradient-to-br from-gray-500 to-pink-500 md:w-[250px]"
+      href="/signup"
+      onClick={[Function]}
+    >
+      Sign up
+    </a>
+  </div>
+</div>
+`;
