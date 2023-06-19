@@ -97,7 +97,7 @@ const cabsData = [
     rentalPrice: 100,
     discount: 5,
     engine_type: '5L V8',
-    imageUrl:
+    image_url:
       'https://images.unsplash.com/photo-1681170368080-f240d1216904?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fE1lcmNlZGVzJTIwQmVueiUyMEMlMjBDbGFzc3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=400&q=60',
     seatingCapacity: 5,
     bodyType: 'Sedan',
