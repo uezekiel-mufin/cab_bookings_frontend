@@ -24,24 +24,22 @@ const AddCab = () => {
 
   // function to handle cab creation
   const handleFormSubmit = async (data) => {
-    try {
-      if (!imageUrl) {
-        toast.error('Kindly upload an image for this cab');
-        return false;
-      }
-      setLoading(true);
-      const result = await dispatch(
-        createCab({ ...data, image_url: imageUrl, user_id: user?.id }),
-      );
-      if (result.payload.id) {
-        setLoading(false);
-        navigate('/cabs');
-      }
-      reset();
-    } catch (error) {
+    if (!imageUrl) {
+      toast.error('Kindly upload an image for this cab');
+      return false;
+    }
+    setLoading(true);
+    const result = await dispatch(
+      createCab({ ...data, image_url: imageUrl, user_id: user?.id }),
+    );
+    if (result.meta.requestStatus === 'fulfilled') {
+      setLoading(false);
+      navigate('/cabs');
+    } else {
       setLoading(false);
       toast.error('An error occurred. Please try again later.');
     }
+    reset();
 
     return true;
   };
