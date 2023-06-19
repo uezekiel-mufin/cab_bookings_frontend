@@ -100,7 +100,7 @@ const CabShow = () => {
             <MultiColorProgressBar />
           </section>
           <section>
-            <Link to="/reservations/new" state={selectedCab}>
+            <Link to="/reservations-new" state={selectedCab}>
               <button
                 type="button"
                 className="bg-lime-500 flex gap-2 items-center text-white rounded-3xl text-xl px-8 py-3"
