@@ -6,44 +6,44 @@ import '@testing-library/jest-dom';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import store from '../redux/store/store';
-import DeleteCab from '../pages/DeleteCab';
+import NewReservation from '../pages/NewReservation';
 
-describe('Delete Cab', () => {
+describe('CabIndex', () => {
   it('renders', () => {
     const tree = TestRenderer.create(
       <Provider store={store}>
         <BrowserRouter>
-          <DeleteCab />
+          <NewReservation />
         </BrowserRouter>
       </Provider>,
     ).toJSON();
     expect(tree).toMatchSnapshot();
   });
-  it('renders Delete Cab', async () => {
+  it('renders CabIndex and checks for main header', async () => {
     render(
       <Provider store={store}>
         <BrowserRouter>
-          <DeleteCab />
+          <NewReservation />
         </BrowserRouter>
       </Provider>,
     );
 
     await waitFor(() => {
-      const header = screen.getByText(/Delete Cab/i);
+      const header = screen.getByText(/Book a Ride with Carbooky!/i);
       expect(header).toBeInTheDocument();
     });
   });
-  it('renders Delete Cab', async () => {
+  it('renders CabIndex and checks for the subheader', async () => {
     render(
       <Provider store={store}>
         <BrowserRouter>
-          <DeleteCab />
+          <NewReservation />
         </BrowserRouter>
       </Provider>,
     );
 
     await waitFor(() => {
-      const subHead = screen.getByText(/No cabs available.../i);
+      const subHead = screen.getByText(/Cab Model/i);
       expect(subHead).toBeInTheDocument();
     });
   });
