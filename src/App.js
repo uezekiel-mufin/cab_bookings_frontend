@@ -17,9 +17,9 @@ function App() {
 
   useEffect(() => {
     if (!user) {
-      navigate('/cabs-new');
+      navigate('/welcome');
     } else {
-      navigate('/cabs-new');
+      navigate('/cabs');
     }
   }, [navigate, user]);
 
