@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CabIndex renders 1`] = `
+<main
+  className="py-20 transition-all h-screen overflow-auto duration-300 ease-linear"
+>
+  <header
+    className="flex flex-col gap-2 md:gap-4 text-lime-800 items-center"
+  >
+    <h1
+      className="font-extrabold text-2xl lg:text-3xl xl:text-5xl capitalize"
+    >
+      Secure your ride
+    </h1>
+    <p
+      className="text-sm md:text-base font-semibold italic "
+    >
+      Please select a cab for rentals
+    </p>
+    <hr
+      className="border-dotted w-[300px] mt-4 font-bold text-2xl border-[3px]"
+    />
+  </header>
+  <section
+    className="flex justify-center pt-20 text-lime-800 items-center"
+  >
+    <h1
+      className="text-2xl text-center font-bold tracking-widest"
+    >
+      No cabs available...
+    </h1>
+  </section>
+  <section
+    className="mb-16 lg:mb-0"
+  >
+    <ul
+      className="grid pb-12 grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 relative gap-8 gap-y-16  items-center transition-all duration-300 ease-linear justify-center p-12 px-4 md:px-12 lg:px-20 xl:px-32"
+    />
+  </section>
+</main>
+`;

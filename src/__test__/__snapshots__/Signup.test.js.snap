@@ -1,0 +1,92 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Delete Cab renders sign up component 1`] = `
+<div
+  className="py-6 pt-20 space-y-8 bg-lime-50 h-screen overflow-auto"
+>
+  <h2
+    className="flex justify-center text-3xl md:text-4xl text-lime-800 font-bold"
+  >
+    Sign Up
+  </h2>
+  <form
+    className="w-full grid grid-cols-1 gap-1 mb-20 px-4 md:px-10 text-lime-800 lg:px-20 xl:px-40 md:gap-x-2"
+    onSubmit={[Function]}
+  >
+    <div>
+      <label
+        htmlFor="fullName"
+      >
+        Full Name:
+        <input
+          id="fullName"
+          name="name"
+          onBlur={[Function]}
+          onChange={[Function]}
+          type="text"
+        />
+      </label>
+    </div>
+    <div>
+      <label
+        htmlFor="email"
+      >
+        Email:
+        <input
+          id="email"
+          name="email"
+          onBlur={[Function]}
+          onChange={[Function]}
+          type="email"
+        />
+      </label>
+    </div>
+    <div>
+      <label
+        htmlFor="password"
+      >
+        Password:
+        <input
+          id="password"
+          name="password"
+          onBlur={[Function]}
+          onChange={[Function]}
+          type="password"
+        />
+      </label>
+    </div>
+    <div>
+      <label
+        htmlFor="confirmPassword"
+      >
+        Confirm Password:
+        <input
+          id="confirmPassword"
+          name="confirmPassword"
+          onBlur={[Function]}
+          onChange={[Function]}
+          type="password"
+        />
+      </label>
+    </div>
+    <button
+      className="bg-lime-700 w-full flex gap-2 items-center transition-all duration-300 text-white rounded-md justify-center text-2xl px-8 py-2"
+      type="submit"
+    >
+      Sign Up
+    </button>
+  </form>
+  <p
+    className="flex justify-center"
+  >
+    Already have an account? 
+    <a
+      className="text-blue-800 font-italic"
+      href="/login"
+      onClick={[Function]}
+    >
+      Log in
+    </a>
+  </p>
+</div>
+`;

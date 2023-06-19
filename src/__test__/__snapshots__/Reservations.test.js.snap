@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Reservations renders 1`] = `
+<div
+  className="h-screen flex flex-col items-center p-4 pt-20 md:p-12 lg:p-20 gap-8 pb-32"
+>
+  <h1
+    className="text-3xl font-bold text-lime-800"
+  >
+    Reservation Details
+  </h1>
+  <hr
+    className="border-dotted w-[300px]  font-bold text-2xl border-[3px]"
+  />
+  <section
+    className="flex justify-center pt-20 text-lime-800 items-center"
+  >
+    <h1
+      className="text-2xl text-center font-bold tracking-widest"
+    >
+      No Reservations available...
+    </h1>
+  </section>
+  <ul
+    className="w-full text-lime-900 flex flex-col gap-8 pb-20"
+  />
+</div>
+`;
