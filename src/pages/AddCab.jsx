@@ -1,6 +1,4 @@
-/* eslint-disable operator-linebreak */
 /* eslint-disable react/jsx-props-no-spreading */
-/* eslint-disable object-curly-newline */
 import React, { useState } from 'react';
 import { Circles } from 'react-loader-spinner';
 import { useForm } from 'react-hook-form';
@@ -231,7 +229,6 @@ const AddCab = () => {
               type="text"
               name="description"
               id="description"
-              // disabled={descriptionLength?.length >= 1000}
               {...register('description', {
                 required: 'Please enter the car description',
                 maxLength: {
@@ -241,13 +238,13 @@ const AddCab = () => {
               })}
             />
           </label>
-          {errors.description ||
-            (descriptionLength?.length >= 1000 && (
-              <span className="text-red-500 text-base">
-                {errors?.description?.message ||
-                  'Description must not exceed 1000 characters'}
-              </span>
-            ))}
+          {errors.description
+          || (descriptionLength?.length >= 1000 && (
+          <span className="text-red-500 text-base">
+            {errors?.description?.message
+                  || 'Description must not exceed 1000 characters'}
+          </span>
+          ))}
         </div>
         <div className="md:col-span-2">
           <h5 className="block font-semibold text-xl">Image</h5>

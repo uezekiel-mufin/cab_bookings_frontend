@@ -1,5 +1,3 @@
-/* eslint-disable operator-linebreak */
-/* eslint-disable implicit-arrow-linebreak */
 import { render, screen, waitFor } from '@testing-library/react';
 import TestRenderer from 'react-test-renderer';
 import '@testing-library/jest-dom';
@@ -47,22 +45,4 @@ describe('New Reservation', () => {
       expect(subHead).toBeInTheDocument();
     });
   });
-
-  // test('renders CabIndex and checks for existence of data', () => {
-  //   render(
-  //     <Provider store={store}>
-  //       <BrowserRouter>
-  //         <Cab cab={testCab} />
-  //       </BrowserRouter>
-  //     </Provider>,
-  //   );
-
-  //   const cabTitle = screen.getByText(
-  //     (content, element) =>
-  //       element.tagName.toLowerCase() === 'h2' &&
-  //       content.includes(testCab.model),
-  //   );
-
-  //   expect(cabTitle).toBeInTheDocument();
-  // });
 });
