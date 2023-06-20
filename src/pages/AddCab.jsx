@@ -213,7 +213,7 @@ const AddCab = () => {
               <p>
                 <span
                   className={`${
-                    descriptionLength.length <= 1000
+                    descriptionLength?.length <= 1000
                       ? 'text-lime-700'
                       : 'text-red-500'
                   }`}
@@ -238,13 +238,13 @@ const AddCab = () => {
               })}
             />
           </label>
-          {errors.description
-          || (descriptionLength?.length >= 1000 && (
-          <span className="text-red-500 text-base">
-            {errors?.description?.message
-                  || 'Description must not exceed 1000 characters'}
-          </span>
-          ))}
+          {errors.description ||
+            (descriptionLength?.length >= 1000 && (
+              <span className="text-red-500 text-base">
+                {errors?.description?.message ||
+                  'Description must not exceed 1000 characters'}
+              </span>
+            ))}
         </div>
         <div className="md:col-span-2">
           <h5 className="block font-semibold text-xl">Image</h5>
