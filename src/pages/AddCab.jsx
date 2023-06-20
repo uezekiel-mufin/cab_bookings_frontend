@@ -1,3 +1,4 @@
+/* eslint-disable operator-linebreak */
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useState } from 'react';
 import { Circles } from 'react-loader-spinner';
