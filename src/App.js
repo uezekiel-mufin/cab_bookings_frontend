@@ -6,20 +6,19 @@ import { useDispatch, useSelector } from 'react-redux';
 import Navbar from './components/Navbar';
 import { toggleMenu } from './redux/slices/menuSlice';
 
-function App() {
+const App = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.user);
 
-  // const { cabs } = useSelector((state) => state.fetchCab);
   const isMenuOpen = useSelector((state) => state.menu.isMenuOpen);
 
   useEffect(() => {
     if (!user) {
-      navigate('/cabs-new');
+      navigate('/welcome');
     } else {
-      navigate('/cabs-new');
+      navigate('/cabs');
     }
   }, [navigate, user]);
 
@@ -53,6 +52,6 @@ function App() {
       </section>
     </div>
   );
-}
+};
 
 export default App;
