@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { FaMediumM, FaTwitter, FaInstagram, FaFacebook } from 'react-icons/fa';
 import { MdOutlineClose } from 'react-icons/md';
+import { AiFillCar } from 'react-icons/ai';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleMenu } from '../redux/slices/menuSlice';
 import { signOut } from '../redux/slices/userSlice';
@@ -54,10 +55,16 @@ const Navbar = () => {
   }, [location.pathname]);
 
   return (
-    <div className="h-screen z-10 flex pl-4 flex-col w-full justify-between py-6">
+    <div className="h-screen z-10 flex pl-2 flex-col w-full justify-between py-6">
       <section className="flex justify-between gap-12  flex-col">
-        <div className="flex justify-between px-4 items-center w-full">
-          <h1 className="text-indigo-500 text-3xl  font-extrabold">CarBooky</h1>
+        <div className="flex justify-between px-2 items-center w-full">
+          <div className="flex items-center text-2xl md:text-3xl  px-2 justify-center  font-extrabold gap-1">
+            <h1 className=" bg-gradient-to-r from-teal-500 to-emerald-700 text-transparent bg-clip-text">
+              CarBooky
+            </h1>
+            <AiFillCar className=" text-xl text-emerald-800  " />
+          </div>
+
           <button
             type="button"
             className="flex p-4 md:hidden "

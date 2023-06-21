@@ -1,5 +1,3 @@
-/* eslint-disable operator-linebreak */
-/* eslint-disable implicit-arrow-linebreak */
 import { render, screen } from '@testing-library/react';
 import TestRenderer from 'react-test-renderer';
 import '@testing-library/jest-dom';

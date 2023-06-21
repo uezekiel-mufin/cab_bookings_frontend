@@ -1,6 +1,5 @@
 /* eslint-disable operator-linebreak */
 /* eslint-disable react/jsx-props-no-spreading */
-/* eslint-disable object-curly-newline */
 import React, { useState } from 'react';
 import { Circles } from 'react-loader-spinner';
 import { useForm } from 'react-hook-form';
@@ -215,7 +214,7 @@ const AddCab = () => {
               <p>
                 <span
                   className={`${
-                    descriptionLength.length <= 1000
+                    descriptionLength?.length <= 1000
                       ? 'text-lime-700'
                       : 'text-red-500'
                   }`}
@@ -231,7 +230,6 @@ const AddCab = () => {
               type="text"
               name="description"
               id="description"
-              // disabled={descriptionLength?.length >= 1000}
               {...register('description', {
                 required: 'Please enter the car description',
                 maxLength: {

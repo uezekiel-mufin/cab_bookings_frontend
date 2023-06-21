@@ -105,6 +105,21 @@ To run the project, execute the following command:
 
 - **npm install**
 - **npm start**
+- **Click Sign up button on the homepage**
+
+To be able to upload a cab image in development, kindly follow this step,
+
+- **[Cloudinary](https://console.cloudinary.com/)**
+- **sign up to get your upload preset and cloud name**
+- **Run the api server first before the frontend server, this would ensure the api runs at port 3000**
+- **Add the following information in your .env file of the frontend application with their respective values**
+
+```sh
+  REACT_APP_CLOUDINARY_CLOUD_NAME
+  REACT_APP_CLOUDINARY_UPLOAD_PRESET
+  REACT_APP_API_URL=http://127.0.0.1:3000/api/v1
+  REACT_APP_API_USERS=http://127.0.0.1:3000/api/v1/users
+```
 
 TO test the project using react testing library, execute the following command:
 
