@@ -2,8 +2,10 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { FaMediumM, FaTwitter, FaInstagram, FaFacebook } from 'react-icons/fa';
-import { MdOutlineClose } from 'react-icons/md';
-import { AiFillCar } from 'react-icons/ai';
+import { MdOutlineClose, MdCarRental } from 'react-icons/md';
+import { BiCartAdd } from 'react-icons/bi';
+import { BsCarFront, BsCartCheck } from 'react-icons/bs';
+import { AiFillCar, AiOutlineDelete } from 'react-icons/ai';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleMenu } from '../redux/slices/menuSlice';
 import { signOut } from '../redux/slices/userSlice';
@@ -13,26 +15,31 @@ const navLinks = [
     id: 1,
     name: 'Cabs',
     path: '/cabs',
+    icon: <BsCarFront />,
   },
   {
     id: 2,
     name: 'Reserve Cab',
     path: '/reservations-new',
+    icon: <MdCarRental />,
   },
   {
     id: 3,
     name: 'Reservations',
     path: '/reservations',
+    icon: <BsCartCheck />,
   },
   {
     id: 4,
     name: 'Add Cab',
     path: '/cabs-new',
+    icon: <BiCartAdd />,
   },
   {
     id: 5,
     name: 'Delete Cab',
     path: '/delete-cab',
+    icon: <AiOutlineDelete />,
   },
 ];
 
@@ -81,10 +88,11 @@ const Navbar = () => {
                   onClick={() => handleLinkClick(link.id)}
                   className={`${
                     activeLink === link.id && 'bg-lime-600 text-white'
-                  } px-4 py-2 transition-all duration-300 cursor-pointer ease-linear`}
+                  } px-4 py-2 transition-all flex items-center gap-2 duration-300 cursor-pointer ease-linear`}
                   role="presentation"
                 >
-                  {link.name}
+                  <span>{link.icon}</span>
+                  <span>{link.name}</span>
                 </li>
               </Link>
             ))}
@@ -112,7 +120,7 @@ const Navbar = () => {
           <FaInstagram className="text-2xl text-[#c32aa3] cursor-pointer " />
           <FaMediumM className="text-2xl text-[#00ab6c] cursor-pointer " />
         </div>
-        <div className="flex gap-1 text-sm font-bold">
+        <div className="flex text-lime-900 gap-1 text-sm font-bold">
           <p> &copy;</p>
           <p>{date}</p>
           <p>CarBooky Inc</p>
