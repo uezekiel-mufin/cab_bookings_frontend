@@ -12,7 +12,7 @@ const Cab = ({ cab }) => (
       <img
         src={cab.image_url}
         alt={cab.model}
-        className="rounded-full aspect-square w-60 "
+        className="rounded-full aspect-square w-40 "
       />
     </Link>
     <section className="flex flex-col gap-4 items-center justify-evenly">

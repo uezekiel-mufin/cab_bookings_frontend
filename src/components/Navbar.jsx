@@ -1,7 +1,13 @@
 /* eslint-disable object-curly-newline */
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { FaMediumM, FaTwitter, FaInstagram, FaFacebook } from 'react-icons/fa';
+import {
+  FaMediumM,
+  FaTwitter,
+  FaInstagram,
+  FaFacebook,
+  FaSignOutAlt,
+} from 'react-icons/fa';
 import { MdOutlineClose, MdCarRental } from 'react-icons/md';
 import { BiCartAdd } from 'react-icons/bi';
 import { BsCarFront, BsCartCheck } from 'react-icons/bs';
@@ -105,8 +111,9 @@ const Navbar = () => {
                   dispatch(signOut());
                 }}
                 type="button"
-                className="text-lime-800 font-bold text-lg"
+                className="text-lime-800 flex items-center gap-2 font-bold text-lg"
               >
+                <FaSignOutAlt />
                 Logout
               </button>
             )}
