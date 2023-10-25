@@ -35,13 +35,13 @@ const Login = () => {
   };
 
   return (
-    <div className="pt-40 space-y-8 bg-lime-50 h-screen overflow-auto">
+    <div className="pt-40 space-y-8 bg-lime-50  flex flex-col items-center h-screen overflow-auto">
       <h2 className="flex justify-center text-3xl md:text-4xl tracking-widest text-lime-800 font-bold">
         Login
       </h2>
       <form
         onSubmit={handleSubmit(handleLoginSubmit)}
-        className="w-full grid grid-cols-1 gap-4 mb-20 px-4 md:px-10 text-lime-800 lg:px-20 xl:px-40 md:gap-x-8"
+        className="w-full  min-w-full  md:min-w-[600px] max-w-[800px] grid grid-cols-1 gap-4 mb-20 px-4 md:px-10 text-lime-800 lg:px-20 xl:px-40 md:gap-x-8"
       >
         <div>
           <input

@@ -38,17 +38,15 @@ const SignUpComponent = () => {
       navigate('/cabs');
     }
   };
-
   const password = watch('password');
-
   return (
-    <div className="py-6 pt-20 space-y-8 bg-lime-50 h-screen overflow-auto">
+    <div className="py-6 pt-20 space-y-8 bg-lime-50 h-screen flex flex-col items-center overflow-auto ">
       <h2 className="flex justify-center text-3xl md:text-4xl text-lime-800 font-bold">
         Sign Up
       </h2>
       <form
         onSubmit={handleSubmit(handleSignUp)}
-        className="w-full grid grid-cols-1 gap-1 mb-20 px-4 md:px-10 text-lime-800 lg:px-20 xl:px-40 md:gap-x-2"
+        className="w-full grid grid-cols-1 gap-1 min-w-full  md:min-w-[600px] max-w-[800px] mb-20 px-4 md:px-10 text-lime-800 lg:px-20 xl:px-40 md:gap-x-2"
       >
         <div>
           <label htmlFor="fullName">
