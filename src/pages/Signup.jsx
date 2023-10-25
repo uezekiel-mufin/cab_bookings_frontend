@@ -40,7 +40,7 @@ const SignUpComponent = () => {
   };
   const password = watch('password');
   return (
-    <div className="py-6 pt-20 space-y-8 bg-lime-50 h-screen flex flex-col items-center overflow-auto ">
+    <div className="py-6 pt-16 space-y-8 bg-lime-50 h-screen flex flex-col items-center overflow-auto ">
       <h2 className="flex justify-center text-3xl md:text-4xl text-lime-800 font-bold">
         Sign Up
       </h2>
